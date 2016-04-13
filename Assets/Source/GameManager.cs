@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     {
     }
 
+    #region Events
+
     private void HandlePlayerDeath()
     {
         foreach (var enemy in this.enemies)
@@ -34,12 +36,8 @@ public class GameManager : MonoBehaviour
     {
         var newEnemy = Instantiate(EnemyPrefab);
         newEnemy.SetActive(true);
-        var screenBounds = Utility.GetScreenSpaceBounds();
-
-        // TODO: Move to enemy constructor
-        newEnemy.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
-            Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
-
         this.enemies.Add(newEnemy);
     }
+
+    #endregion
 }

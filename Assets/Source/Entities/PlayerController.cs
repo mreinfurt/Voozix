@@ -31,10 +31,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        HandleInput();
         HandleMovement();
     }
 
-    private void HandleMovement()
+    private void HandleInput()
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -61,7 +62,10 @@ public class PlayerController : MonoBehaviour
         {
             movement.y = 0;
         }
+    }
 
+    private void HandleMovement()
+    {
         var position = new Vector3(Speed * movement.x * Time.deltaTime, Speed * movement.y * Time.deltaTime, 0);
         this.transform.position += position;
     }

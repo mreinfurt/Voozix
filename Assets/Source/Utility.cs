@@ -2,6 +2,10 @@
 
 public class Utility : MonoBehaviour
 {
+    /// <summary>
+    /// Returns a rect spanning the full visible screen bounds
+    /// </summary>
+    /// <returns></returns>
     public static Rect GetScreenSpaceBounds()
     {
         var mainCamera = Camera.main;
@@ -20,12 +24,10 @@ public class Utility : MonoBehaviour
         return new Rect(xMin, yMin, xMax - xMin, yMax - yMin);
     }
 
-    // Use this for initialization
     private void Start()
     {
     }
 
-    // Update is called once per frame
     private void Update()
     {
     }
