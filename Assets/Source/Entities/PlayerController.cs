@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
 
     public Action OnPlayerDeath;
 
-    public Action OnStarCollected;
-
     public Action<int> OnScoreChanged;
 
+    public Action OnStarCollected;
+
     private int score;
+
+    public float Speed = 7.5f;
 
     public int Score
     {
@@ -23,8 +25,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public float Speed = 7.5f;
-
     private void Start()
     {
     }
@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-        HandleWallBounds();
     }
 
     private void HandleMovement()
@@ -65,25 +64,6 @@ public class PlayerController : MonoBehaviour
 
         var position = new Vector3(Speed * movement.x * Time.deltaTime, Speed * movement.y * Time.deltaTime, 0);
         this.transform.position += position;
-    }
-
-    /// Keeps the player inside the screen space
-    private void HandleWallBounds()
-    {
-        var newPosition = transform.position;
-        var screenBounds = Utility.GetScreenSpaceBounds();
-
-        if (newPosition.x < screenBounds.x || newPosition.x > screenBounds.x + screenBounds.width)
-        {
-            newPosition.x = Mathf.Clamp(newPosition.x, screenBounds.x, screenBounds.x + screenBounds.width);
-        }
-
-        if (newPosition.y < screenBounds.y || newPosition.y > screenBounds.y + screenBounds.height)
-        {
-            newPosition.y = Mathf.Clamp(newPosition.y, screenBounds.y, screenBounds.y + screenBounds.height);
-        }
-
-        transform.position = newPosition;
     }
 
     private void OnCollisionEnter2D(Collision2D collider)

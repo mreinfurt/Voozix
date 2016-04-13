@@ -1,21 +1,18 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
+    public Text GameOverLabel;
     public PlayerController Player;
 
     public Text ScoreLabel;
 
-    public Text GameOverLabel;
-
-	// Use this for initialization
-	void Start () {
+    private void Start()
+    {
         this.Player.OnScoreChanged += this.HandleScoreChanged;
         this.Player.OnPlayerDeath += this.HandlePlayerDeath;
-	}
+    }
 
     private void HandlePlayerDeath()
     {
@@ -28,7 +25,7 @@ public class HUD : MonoBehaviour
         this.ScoreLabel.text = "Score: " + score;
     }
 
-    // Update is called once per frame
-	void Update () {
-	}
+    private void Update()
+    {
+    }
 }
