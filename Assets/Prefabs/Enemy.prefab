@@ -10,14 +10,15 @@ GameObject:
   - 4: {fileID: 424518}
   - 212: {fileID: 21223616}
   - 58: {fileID: 5826854}
-  - 114: {fileID: 11482452}
+  - 114: {fileID: 11434464}
+  - 114: {fileID: 11457522}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &424518
 Transform:
   m_ObjectHideFlags: 1
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.7351933, y: 1.0048481, z: 0}
+  m_LocalPosition: {x: 14.59, y: 1.0048481, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +45,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15
---- !u!114 &11482452
+--- !u!114 &11434464
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -57,6 +58,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movement: {x: 0, y: 0}
   Speed: 5
+--- !u!114 &11457522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547112a3c5687cb49ba1968401c9b856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21223616
 SpriteRenderer:
   m_ObjectHideFlags: 1
