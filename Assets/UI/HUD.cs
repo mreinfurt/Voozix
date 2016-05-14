@@ -7,6 +7,7 @@ namespace UI
     public class HUD : MonoBehaviour
     {
         public Text GameOverLabel;
+        public Text InfoLabel;
 
         private float scoreCurrentAnimationState;
         private float scoreCurrentScale;
@@ -23,12 +24,19 @@ namespace UI
 
         private void HandlePlayerDeath()
         {
-            this.GameOverLabel.text = this.GameOverLabel.text;
             this.GameOverLabel.enabled = true;
         }
 
         private void HandleScoreChanged(int totalScore, int difference, Vector2 position)
         {
+            this.InfoLabel.text = "Score: " + totalScore;
+
+            // Only show score gains
+            if (difference <= 0)
+            {
+                return;
+            }
+
             this.ScoreLabel.text = "+" + difference;
             this.ScoreLabel.gameObject.transform.position = Camera.main.WorldToScreenPoint(position);
             this.ScoreLabel.color = Color.white;
@@ -38,6 +46,17 @@ namespace UI
         }
 
         private void Update()
+        {
+            this.UpdateScore();
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Global.OnReset();
+                this.GameOverLabel.enabled = false;
+            }
+        }
+
+        private void UpdateScore()
         {
             if (!this.showScore)
             {

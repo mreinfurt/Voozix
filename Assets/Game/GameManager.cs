@@ -31,13 +31,13 @@ namespace Game
             }
 
             this.enemies.Clear();
-            this.Player.GetComponent<PlayerController>().Reset();
         }
 
         private void HandleStarCollected()
         {
             var newEnemy = Instantiate(this.EnemyPrefab);
             newEnemy.SetActive(true);
+            newEnemy.GetComponent<EnemyController>().Spawn(this.Player.transform.position);
             this.enemies.Add(newEnemy);
         }
 

@@ -1,33 +1,47 @@
-﻿using System;
+﻿using Events;
 using UnityEngine;
 
 namespace Entities
 {
     public class PlayerController : MonoBehaviour
     {
+        public bool IsAlive = true;
         private Vector2 movement;
 
         private int score;
 
-        public float Speed = 7.5f;
+        public float Speed = 5.5f;
 
         public int Score
         {
             get { return this.score; }
             private set
             {
-                Events.Player.OnScoreChanged(this.score, value - this.score, this.transform.position);
-
+                var difference = value - this.score;
                 this.score = value;
+
+                Player.OnScoreChanged(this.score, difference, this.transform.position);
             }
         }
 
         private void Start()
         {
+            Global.OnReset += OnReset;
+        }
+
+        private void OnReset()
+        {
+            this.Score = 0;
+            this.IsAlive = true;
         }
 
         private void Update()
         {
+            if (!this.IsAlive)
+            {
+                return;
+            }
+
             this.HandleInput();
             this.HandleMovement();
         }
@@ -63,7 +77,8 @@ namespace Entities
 
         private void HandleMovement()
         {
-            var position = new Vector3(this.Speed * this.movement.x * Time.deltaTime, this.Speed * this.movement.y * Time.deltaTime, 0);
+            var position = new Vector3(this.Speed * this.movement.x * Time.deltaTime,
+                this.Speed * this.movement.y * Time.deltaTime, 0);
             this.transform.position += position;
         }
 
@@ -73,17 +88,13 @@ namespace Entities
             {
                 case "star":
                     this.Score += 20;
-                    Events.Player.OnStarCollected();
+                    Player.OnStarCollected();
                     break;
                 case "enemy":
-                    Events.Player.OnDeath();
+                    Player.OnDeath();
+                    this.IsAlive = false;
                     break;
             }
-        }
-
-        public void Reset()
-        {
-            this.Score = 0;
         }
     }
 }

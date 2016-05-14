@@ -11,15 +11,19 @@ namespace Entities
         private void Start()
         {
             this.GetComponent<ClampToScreenBounds>().OnHitScreenBounds += this.OnHitScreenBounds;
-            this.Spawn();
         }
 
-        private void Spawn()
+        public void Spawn(Vector2 playerPosition)
         {
             var screenBounds = Utility.Screen.GetScreenSpaceBounds();
 
-            this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
-                Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
+            // Avoid spwaning near the player
+            do
+            {
+                this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
+                    Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
+
+            } while (Vector2.Distance(this.transform.position, playerPosition) < 5);
 
             var horizontal = Random.Range(0, 10);
 
