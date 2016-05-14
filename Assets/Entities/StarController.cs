@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Screen = Utility.Screen;
 
 namespace Entities
 {
@@ -42,7 +43,8 @@ namespace Entities
                 //this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Stop();
                 //this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Play();
 
-                var screenBounds = Utility.Screen.GetScreenSpaceBounds();
+                this.GetComponent<AudioSource>().Play();
+                var screenBounds = Screen.GetScreenSpaceBounds();
                 this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
                     Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
             }
