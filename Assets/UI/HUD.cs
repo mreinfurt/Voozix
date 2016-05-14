@@ -1,5 +1,4 @@
-﻿using System;
-using Entities;
+﻿using Events;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,18 +7,18 @@ namespace UI
     public class HUD : MonoBehaviour
     {
         public Text GameOverLabel;
-        public Text ScoreLabel;
 
-        private float scoreCurrentAnimationState = 0;
-        private float scoreCurrentScale = 0;
-        private bool showScore = false;
+        private float scoreCurrentAnimationState;
+        private float scoreCurrentScale;
+        public Text ScoreLabel;
+        private bool showScore;
 
         private void Start()
         {
-            Events.Player.OnScoreChanged += this.HandleScoreChanged;
-            Events.Player.OnDeath += this.HandlePlayerDeath;
+            Player.OnScoreChanged += this.HandleScoreChanged;
+            Player.OnDeath += this.HandlePlayerDeath;
 
-            this.ScoreLabel.text = String.Empty;
+            this.ScoreLabel.text = string.Empty;
         }
 
         private void HandlePlayerDeath()
@@ -50,7 +49,7 @@ namespace UI
 
             if (this.scoreCurrentAnimationState >= 1f)
             {
-                this.ScoreLabel.color =  Color.Lerp(Color.white, Color.clear, this.scoreCurrentAnimationState - 1);
+                this.ScoreLabel.color = Color.Lerp(Color.white, Color.clear, this.scoreCurrentAnimationState - 1);
 
                 if (this.scoreCurrentAnimationState > 2f)
                 {
@@ -58,7 +57,8 @@ namespace UI
                 }
             }
 
-            this.ScoreLabel.gameObject.transform.localScale = new Vector3(this.scoreCurrentScale, this.scoreCurrentScale, this.scoreCurrentScale);
+            this.ScoreLabel.gameObject.transform.localScale = new Vector3(this.scoreCurrentScale, this.scoreCurrentScale,
+                this.scoreCurrentScale);
         }
     }
 }
