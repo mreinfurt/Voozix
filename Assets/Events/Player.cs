@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Events
 {
@@ -17,6 +18,6 @@ namespace Events
         /// <summary>
         /// Called when the score of the player changes
         /// </summary>
-        public static Action<int> OnScoreChanged;
+        public static Action<int, int, Vector2> OnScoreChanged;
     }
 }

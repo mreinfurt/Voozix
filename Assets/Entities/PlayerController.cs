@@ -16,8 +16,9 @@ namespace Entities
             get { return this.score; }
             private set
             {
+                Events.Player.OnScoreChanged(this.score, value - this.score, this.transform.position);
+
                 this.score = value;
-                Events.Player.OnScoreChanged(this.score);
             }
         }
 
@@ -71,7 +72,7 @@ namespace Entities
             switch (collider.gameObject.tag.ToLower())
             {
                 case "star":
-                    this.Score += 50;
+                    this.Score += 20;
                     Events.Player.OnStarCollected();
                     break;
                 case "enemy":

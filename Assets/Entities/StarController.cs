@@ -22,8 +22,8 @@ namespace Entities
         {
             this.currentAnimationState += Time.deltaTime;
             this.currentScale = this.growing
-                ? Mathf.Lerp(0.75f, 1.35f, this.currentAnimationState)
-                : Mathf.Lerp(1.35f, 0.75f, this.currentAnimationState);
+                ? Mathf.Lerp(0.5f, 1f, this.currentAnimationState)
+                : Mathf.Lerp(1f, 0.5f, this.currentAnimationState);
 
             if (this.currentAnimationState >= 1f)
             {
@@ -34,13 +34,13 @@ namespace Entities
             this.transform.localScale = new Vector3(this.currentScale, this.currentScale, this.currentScale);
         }
 
-        private void OnCollisionEnter2D(Collision2D collider)
+        private void OnCollisionEnter2D(Collision2D collisionInformation)
         {
-            if (collider.gameObject.tag.ToLower() == "player")
+            if (collisionInformation.gameObject.tag.ToLower() == "player")
             {
                 this.StarCollectionParticleSystem.transform.position = this.transform.position;
-                this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Stop();
-                this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Play();
+                //this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Stop();
+                //this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Play();
 
                 var screenBounds = Utility.Screen.GetScreenSpaceBounds();
                 this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
