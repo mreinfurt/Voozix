@@ -29,19 +29,19 @@ public class StarController : MonoBehaviour
             growing = !growing;
         }
 
-        this.transform.localScale = new Vector3(currentScale, currentScale, currentScale);
+        transform.localScale = new Vector3(currentScale, currentScale, currentScale);
     }
 
     private void OnCollisionEnter2D(Collision2D collider)
     {
         if (collider.gameObject.tag.ToLower() == "player")
         {
-            StarCollectionParticleSystem.transform.position = this.transform.position;
+            StarCollectionParticleSystem.transform.position = transform.position;
             StarCollectionParticleSystem.GetComponent<ParticleSystem>().Stop();
             StarCollectionParticleSystem.GetComponent<ParticleSystem>().Play();
 
             var screenBounds = Utility.GetScreenSpaceBounds();
-            this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
+            transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
                 Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
         }
     }

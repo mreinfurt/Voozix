@@ -17,11 +17,11 @@ public class PlayerController : MonoBehaviour
 
     public int Score
     {
-        get { return this.score; }
+        get { return score; }
         private set
         {
-            this.score = value;
-            OnScoreChanged(this.score);
+            score = value;
+            OnScoreChanged(score);
         }
     }
 
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement()
     {
         var position = new Vector3(Speed * movement.x * Time.deltaTime, Speed * movement.y * Time.deltaTime, 0);
-        this.transform.position += position;
+        transform.position += position;
     }
 
     private void OnCollisionEnter2D(Collision2D collider)
@@ -75,17 +75,17 @@ public class PlayerController : MonoBehaviour
         switch (collider.gameObject.tag.ToLower())
         {
             case "star":
-                this.Score += 50;
-                this.OnStarCollected();
+                Score += 50;
+                OnStarCollected();
                 break;
             case "enemy":
-                this.OnPlayerDeath();
+                OnPlayerDeath();
                 break;
         }
     }
 
     public void Reset()
     {
-        this.Score = 0;
+        Score = 0;
     }
 }

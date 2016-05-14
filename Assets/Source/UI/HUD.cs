@@ -10,19 +10,19 @@ public class HUD : MonoBehaviour
 
     private void Start()
     {
-        this.Player.OnScoreChanged += this.HandleScoreChanged;
-        this.Player.OnPlayerDeath += this.HandlePlayerDeath;
+        Player.OnScoreChanged += HandleScoreChanged;
+        Player.OnPlayerDeath += HandlePlayerDeath;
     }
 
     private void HandlePlayerDeath()
     {
-        this.GameOverLabel.text = this.GameOverLabel.text + "\n" + this.ScoreLabel.text;
-        this.GameOverLabel.enabled = true;
+        GameOverLabel.text = GameOverLabel.text + "\n" + ScoreLabel.text;
+        GameOverLabel.enabled = true;
     }
 
     private void HandleScoreChanged(int score)
     {
-        this.ScoreLabel.text = "Score: " + score;
+        ScoreLabel.text = "Score: " + score;
     }
 
     private void Update()
