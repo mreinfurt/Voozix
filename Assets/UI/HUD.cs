@@ -7,14 +7,12 @@ namespace UI
     public class HUD : MonoBehaviour
     {
         public Text GameOverLabel;
-        public PlayerController Player;
-
         public Text ScoreLabel;
 
         private void Start()
         {
-            this.Player.OnScoreChanged += this.HandleScoreChanged;
-            this.Player.OnPlayerDeath += this.HandlePlayerDeath;
+            Events.Player.OnScoreChanged += this.HandleScoreChanged;
+            Events.Player.OnDeath += this.HandlePlayerDeath;
         }
 
         private void HandlePlayerDeath()

@@ -7,12 +7,6 @@ namespace Entities
     {
         private Vector2 movement;
 
-        public Action OnPlayerDeath;
-
-        public Action<int> OnScoreChanged;
-
-        public Action OnStarCollected;
-
         private int score;
 
         public float Speed = 7.5f;
@@ -23,7 +17,7 @@ namespace Entities
             private set
             {
                 this.score = value;
-                this.OnScoreChanged(this.score);
+                Events.Player.OnScoreChanged(this.score);
             }
         }
 
@@ -78,10 +72,10 @@ namespace Entities
             {
                 case "star":
                     this.Score += 50;
-                    this.OnStarCollected();
+                    Events.Player.OnStarCollected();
                     break;
                 case "enemy":
-                    this.OnPlayerDeath();
+                    Events.Player.OnDeath();
                     break;
             }
         }

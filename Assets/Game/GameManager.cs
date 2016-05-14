@@ -13,9 +13,8 @@ namespace Game
 
         private void Start()
         {
-            var playerController = this.Player.GetComponent<PlayerController>();
-            playerController.OnPlayerDeath += this.HandlePlayerDeath;
-            playerController.OnStarCollected += this.HandleStarCollected;
+            Events.Player.OnDeath += this.HandlePlayerDeath;
+            Events.Player.OnStarCollected += this.HandleStarCollected;
         }
 
         private void Update()
