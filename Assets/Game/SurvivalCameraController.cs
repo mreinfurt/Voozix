@@ -1,4 +1,5 @@
 ﻿using Events;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Game
@@ -38,6 +39,7 @@ namespace Game
             this.defaultCamera.transform.position = cameraChange;
         }
 
+        [UsedImplicitly]
         private void StopShaking()
         {
             this.defaultCamera.transform.position = this.defaultPosition;
