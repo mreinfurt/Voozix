@@ -2,7 +2,7 @@
 
 namespace Events
 {
-    class Global
+    internal class Global
     {
         /// <summary>
         /// Called when the game resets

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Screen = Utility.Screen;
 
 namespace Entities
 {
@@ -18,7 +19,7 @@ namespace Entities
         private void Update()
         {
             var newPosition = this.transform.position;
-            var screenBounds = Utility.Screen.GetScreenSpaceBounds();
+            var screenBounds = Screen.GetScreenSpaceBounds();
 
             if (newPosition.x < screenBounds.x || newPosition.x > screenBounds.x + screenBounds.width)
             {

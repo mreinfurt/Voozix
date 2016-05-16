@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Screen = Utility.Screen;
 
 namespace Entities
 {
@@ -15,14 +16,13 @@ namespace Entities
 
         public void Spawn(Vector2 playerPosition)
         {
-            var screenBounds = Utility.Screen.GetScreenSpaceBounds();
+            var screenBounds = Screen.GetScreenSpaceBounds();
 
             // Avoid spwaning near the player
             do
             {
                 this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
                     Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
-
             } while (Vector2.Distance(this.transform.position, playerPosition) < 5);
 
             var horizontal = Random.Range(0, 10);
@@ -60,7 +60,8 @@ namespace Entities
 
         private void HandleMovement()
         {
-            var position = new Vector3(this.Speed * this.Movement.x * Time.deltaTime, this.Speed * this.Movement.y * Time.deltaTime);
+            var position = new Vector3(this.Speed * this.Movement.x * Time.deltaTime,
+                this.Speed * this.Movement.y * Time.deltaTime);
             this.transform.position += position;
         }
     }
