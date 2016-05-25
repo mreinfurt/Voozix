@@ -7,7 +7,7 @@ namespace Entities
     {
         public Vector2 Movement;
 
-        public float Speed = 5f;
+        public float Speed = 4f;
 
         private void Start()
         {
@@ -37,6 +37,8 @@ namespace Entities
             {
                 this.Movement.y = 1;
             }
+
+            this.transform.localScale = Vector3.zero;
         }
 
         /// <summary>
@@ -58,6 +60,20 @@ namespace Entities
         private void Update()
         {
             this.HandleMovement();
+
+            if (this.transform.localScale.x < 1)
+            {
+                var warpSpeed = 0.025f;
+                Vector3 newScale = this.transform.localScale;
+                newScale.x += warpSpeed;
+                newScale.y += warpSpeed;
+                newScale.z += warpSpeed;
+                this.transform.localScale = newScale;
+            }
+            else
+            {
+                this.transform.localScale = new Vector3(1, 1, 1);
+            }
         }
 
         private void HandleMovement()
