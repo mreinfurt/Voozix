@@ -15,6 +15,11 @@ namespace Entities
 
         public GameObject StarCollectionParticleSystem;
 
+        public float Scale
+        {
+            get { return this.currentScale; }
+        }
+
         private void Start()
         {
         }
