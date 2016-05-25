@@ -19,11 +19,13 @@ namespace Entities
             var screenBounds = Screen.GetScreenSpaceBounds();
 
             // Avoid spwaning near the player
+            var distanceToPlayer = 3.5f;
+
             do
             {
                 this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
                     Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
-            } while (Vector2.Distance(this.transform.position, playerPosition) < 5);
+            } while (Vector2.Distance(this.transform.position, playerPosition) < distanceToPlayer);
 
             var horizontal = Random.Range(0, 10);
 

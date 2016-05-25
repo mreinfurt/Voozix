@@ -47,11 +47,17 @@ namespace Entities
                 this.StarCollectionParticleSystem.transform.position = this.transform.position;
                 //this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Stop();
                 //this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Play();
-
                 this.GetComponent<AudioSource>().Play();
+
+                var playerPosition = collisionInformation.gameObject.transform.position;
                 var screenBounds = Screen.GetScreenSpaceBounds();
-                this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
-                    Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
+                var distanceToPlayer = 1.5f;
+
+                do
+                {
+                    this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
+                        Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
+                } while (Vector2.Distance(this.transform.position, playerPosition) < distanceToPlayer);
             }
         }
     }
