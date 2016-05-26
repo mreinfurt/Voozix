@@ -1,31 +1,34 @@
-﻿using Events;
+﻿using Data;
+using Events;
+using Game;
 using UnityEngine;
 
 namespace Entities
 {
     public class PlayerController : MonoBehaviour
     {
+        private PlayerData data = new PlayerData();
+
         public bool IsAlive = true;
         private Vector2 movement;
-
-        private int score;
 
         public float Speed = 5.5f;
 
         public int Score
         {
-            get { return this.score; }
+            get { return this.data.CurrentScore; }
             private set
             {
-                var difference = value - this.score;
-                this.score = value;
+                var difference = value - this.data.CurrentScore;
+                this.data.CurrentScore = value;
 
-                Player.OnScoreChanged(this.score, difference, this.transform.position);
+                Player.OnScoreChanged(this.data.CurrentScore, difference, this.transform.position);
             }
         }
 
         private void Start()
         {
+            this.data = PlayerDataSaveController.Load();
             Global.OnReset += OnReset;
         }
 
@@ -92,6 +95,8 @@ namespace Entities
                     break;
                 case "enemy":
                     Player.OnDeath();
+                    PlayerDataSaveController.Save(this.data);
+                    this.data.Scores.Add(0);
                     this.IsAlive = false;
                     break;
             }
