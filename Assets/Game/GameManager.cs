@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Data;
 using Entities;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace Game
 
         #region Events
 
-        private void HandlePlayerDeath()
+        private void HandlePlayerDeath(PlayerData data)
         {
             foreach (var enemy in this.enemies)
             {

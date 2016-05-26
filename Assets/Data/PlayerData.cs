@@ -8,19 +8,18 @@ namespace Data
     [Serializable]
     public class PlayerData
     {
-        public List<int> Scores = new List<int>();
+        public int HighestScore;
 
-        public int CurrentScore
+        private int score;
+        public int Score
         {
-            get { return this.Scores.LastOrDefault(); }
-            set
-            {
-                if (this.Scores.Count <= 0)
+            get { return this.score; }
+            set {
+                this.score = value;
+                if (this.score > this.HighestScore)
                 {
-                    this.Scores.Add(0);
+                    this.HighestScore = this.score;
                 }
-                    
-                this.Scores[Scores.Count - 1] = value;
             }
         }
     }

@@ -8,7 +8,6 @@ namespace Data
     public class PlayerDataSaveController : MonoBehaviour
     {
         private const string GameStateFile = "/gameState.vzx";
-        private const int MaximumScoreCount = 5;
 
         private void Start()
         {
@@ -21,11 +20,6 @@ namespace Data
 
         public static void Save(PlayerData playerData)
         {
-            if (playerData.Scores.Count > MaximumScoreCount)
-            {
-                playerData.Scores.RemoveRange(0, playerData.Scores.Count - MaximumScoreCount);
-            }
-
             var formatter = new BinaryFormatter();
             var file = File.Create(Application.persistentDataPath + GameStateFile);
 
@@ -45,15 +39,7 @@ namespace Data
             var playerData = (PlayerData) formatter.Deserialize(file);
             file.Close();
 
-            if (playerData.Scores.Count > 0)
-            {
-                playerData.Scores.Add(0);
-            }
-
-            if (playerData.Scores.Count >= MaximumScoreCount)
-            {
-                playerData.Scores.RemoveAt(0);
-            }
+            playerData.Score = 0;
 
             return playerData;
         }

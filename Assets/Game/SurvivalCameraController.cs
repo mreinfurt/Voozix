@@ -1,4 +1,5 @@
-﻿using Events;
+﻿using Data;
+using Events;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace Game
             this.defaultPosition = this.defaultCamera.transform.position;
         }
 
-        private void OnDeath()
+        private void OnDeath(PlayerData playerData)
         {
             this.shakeAmount = this.ShakeIntensity;
             Invoke("StopShaking", 0.1f);

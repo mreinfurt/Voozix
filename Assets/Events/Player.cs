@@ -1,4 +1,5 @@
 ﻿using System;
+using Data;
 using UnityEngine;
 
 namespace Events
@@ -13,7 +14,7 @@ namespace Events
         /// <summary>
         /// Called when the player dies
         /// </summary>
-        public static Action OnDeath;
+        public static Action<PlayerData> OnDeath;
 
         /// <summary>
         /// Called when the score of the player changes

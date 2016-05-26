@@ -1,4 +1,5 @@
-﻿using Events;
+﻿using Data;
+using Events;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,13 +8,18 @@ namespace UI
 {
     public class HUD : MonoBehaviour
     {
+        // Game Over
         public Text GameOverLabel;
-        public Text InfoLabel;
+        public Text ScoreTitleLabel;
+        public Text ScoreValueLabel;
+        public SpriteRenderer ScoreHighlightBox;
 
+        // Ingame
         private float scoreCurrentAnimationState;
         private float scoreCurrentScale;
         public Text ScoreLabel;
         private bool showScore;
+        public Text InfoLabel;
 
         private void Start()
         {
@@ -23,9 +29,10 @@ namespace UI
             this.ScoreLabel.text = string.Empty;
         }
 
-        private void HandlePlayerDeath()
+        private void HandlePlayerDeath(PlayerData playerData)
         {
-            this.GameOverLabel.enabled = true;
+            this.ScoreValueLabel.text = "<color=\"#fffc19\">" + playerData.Score + "</color>\n<color=\"#fffc19\">" + playerData.HighestScore + "</color>";
+            this.ShowGameOverInformation(true);
         }
 
         private void HandleScoreChanged(int totalScore, int difference, Vector2 position)
@@ -53,8 +60,16 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.R) && GameStateController.GameState != GameState.InGame)
             {
                 Global.OnReset();
-                this.GameOverLabel.enabled = false;
+                this.ShowGameOverInformation(false);
             }
+        }
+
+        private void ShowGameOverInformation(bool visible)
+        {
+            this.GameOverLabel.enabled = visible;
+            this.ScoreTitleLabel.enabled = visible;
+            this.ScoreValueLabel.enabled = visible;
+            this.ScoreHighlightBox.enabled = visible;
         }
 
         private void UpdateScore()

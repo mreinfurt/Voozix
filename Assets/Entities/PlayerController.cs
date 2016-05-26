@@ -16,13 +16,13 @@ namespace Entities
 
         public int Score
         {
-            get { return this.data.CurrentScore; }
+            get { return this.data.Score; }
             private set
             {
-                var difference = value - this.data.CurrentScore;
-                this.data.CurrentScore = value;
+                var difference = value - this.data.Score;
+                this.data.Score = value;
 
-                Player.OnScoreChanged(this.data.CurrentScore, difference, this.transform.position);
+                Player.OnScoreChanged(this.data.Score, difference, this.transform.position);
             }
         }
 
@@ -94,9 +94,8 @@ namespace Entities
                     Player.OnStarCollected();
                     break;
                 case "enemy":
-                    Player.OnDeath();
+                    Player.OnDeath(this.data);
                     PlayerDataSaveController.Save(this.data);
-                    this.data.Scores.Add(0);
                     this.IsAlive = false;
                     break;
             }
