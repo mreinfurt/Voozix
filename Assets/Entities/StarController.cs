@@ -55,8 +55,9 @@ namespace Entities
 
                 do
                 {
-                    this.transform.position = new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
-                        Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
+                    this.transform.position =
+                        new Vector3(Random.Range(screenBounds.x, screenBounds.x + screenBounds.width),
+                            Random.Range(screenBounds.y, screenBounds.y + screenBounds.height), 1);
                 } while (Vector2.Distance(this.transform.position, playerPosition) < distanceToPlayer);
             }
         }

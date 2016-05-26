@@ -10,16 +10,16 @@ namespace UI
     {
         // Game Over
         public Text GameOverLabel;
-        public Text ScoreTitleLabel;
-        public Text ScoreValueLabel;
-        public SpriteRenderer ScoreHighlightBox;
+        public Text InfoLabel;
 
         // Ingame
         private float scoreCurrentAnimationState;
         private float scoreCurrentScale;
+        public SpriteRenderer ScoreHighlightBox;
         public Text ScoreLabel;
+        public Text ScoreTitleLabel;
+        public Text ScoreValueLabel;
         private bool showScore;
-        public Text InfoLabel;
 
         private void Start()
         {
@@ -31,7 +31,8 @@ namespace UI
 
         private void HandlePlayerDeath(PlayerData playerData)
         {
-            this.ScoreValueLabel.text = "<color=\"#fffc19\">" + playerData.Score + "</color>\n<color=\"#fffc19\">" + playerData.HighestScore + "</color>";
+            this.ScoreValueLabel.text = "<color=\"#fffc19\">" + playerData.Score + "</color>\n<color=\"#fffc19\">" +
+                                        playerData.HighestScore + "</color>";
             this.ShowGameOverInformation(true);
         }
 

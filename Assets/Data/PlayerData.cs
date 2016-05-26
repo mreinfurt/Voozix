@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 namespace Data
 {
@@ -11,10 +8,12 @@ namespace Data
         public int HighestScore;
 
         private int score;
+
         public int Score
         {
             get { return this.score; }
-            set {
+            set
+            {
                 this.score = value;
                 if (this.score > this.HighestScore)
                 {

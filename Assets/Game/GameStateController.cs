@@ -1,5 +1,4 @@
-﻿using Data;
-using Events;
+﻿using Events;
 using UnityEngine;
 
 namespace Game
@@ -20,7 +19,7 @@ namespace Game
         {
             GameState = GameState.InGame;
 
-            Player.OnDeath += (PlayerData data) => GameState = GameState.PostGame;
+            Player.OnDeath += data => GameState = GameState.PostGame;
             Global.OnReset += () => GameState = GameState.InGame;
         }
 

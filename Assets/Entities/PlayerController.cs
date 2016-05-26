@@ -1,6 +1,5 @@
 ﻿using Data;
 using Events;
-using Game;
 using UnityEngine;
 
 namespace Entities
