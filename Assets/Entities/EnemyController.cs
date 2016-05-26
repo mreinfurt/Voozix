@@ -64,7 +64,7 @@ namespace Entities
             if (this.transform.localScale.x < 1)
             {
                 var warpSpeed = 0.025f;
-                Vector3 newScale = this.transform.localScale;
+                var newScale = this.transform.localScale;
                 newScale.x += warpSpeed;
                 newScale.y += warpSpeed;
                 newScale.z += warpSpeed;

@@ -1,4 +1,5 @@
 ﻿using Events;
+using Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,7 +50,7 @@ namespace UI
         {
             this.UpdateScore();
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && GameStateController.GameState != GameState.InGame)
             {
                 Global.OnReset();
                 this.GameOverLabel.enabled = false;
