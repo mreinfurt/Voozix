@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Star
+  - Safezone
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Hazards
+  - Safezone
+  - Player
+  - Star
   - 
   - 
   - 

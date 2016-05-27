@@ -21,7 +21,7 @@ namespace Entities
 
         private void Start()
         {
-            this.GetComponent<ClampToScreenBounds>().OnHitScreenBounds += this.OnHitScreenBounds;
+            this.GetComponent<ClampToScreenBounds>().OnHitScreenBounds += this.ReverseDirection;
         }
 
         public void Spawn(Vector2 playerPosition)
@@ -55,7 +55,7 @@ namespace Entities
         /// Reverse directions when hitting screen bounds
         /// </summary>
         /// <param name="direction"></param>
-        private void OnHitScreenBounds(Vector2 direction)
+        private void ReverseDirection(Vector2 direction)
         {
             if (direction.x >= 1)
             {
@@ -91,6 +91,18 @@ namespace Entities
             var position = new Vector3(this.Speed * this.Movement.x * Time.deltaTime,
                 this.Speed * this.Movement.y * Time.deltaTime);
             this.transform.position += position;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collider)
+        {
+            var colliderTag = collider.gameObject.tag.ToLower();
+            Debug.Log("Collision with " + colliderTag);
+            if (colliderTag == "star" || colliderTag == "enemy")
+            {
+                return;
+            }
+
+            this.ReverseDirection(this.Movement);
         }
 
         #endregion
