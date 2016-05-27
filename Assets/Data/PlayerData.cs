@@ -2,6 +2,9 @@
 
 namespace Data
 {
+    /// <summary>
+    /// Stores all player relevant information which has to persist between sessions and levels.
+    /// </summary>
     [Serializable]
     public class PlayerData
     {

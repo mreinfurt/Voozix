@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Data
 {
+    /// <summary>
+    /// Responsible for saving and loading the PlayerData
+    /// </summary>
     public class PlayerDataSaveController : MonoBehaviour
     {
         private const string GameStateFile = "/gameState.vzx";

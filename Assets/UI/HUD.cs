@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// User interface while ingame
+    /// </summary>
     public class HUD : MonoBehaviour
     {
         // Game Over

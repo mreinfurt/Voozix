@@ -2,7 +2,10 @@
 
 namespace Utility
 {
-    public class Screen : MonoBehaviour
+    /// <summary>
+    /// Provides utility functions for the screen space
+    /// </summary>
+    public class Screen
     {
         /// <summary>
         /// Returns a rect spanning the full visible screen bounds
@@ -24,14 +27,6 @@ namespace Utility
             var yMin = cameraPosition.y - distance.y;
 
             return new Rect(xMin, yMin, xMax - xMin, yMax - yMin);
-        }
-
-        private void Start()
-        {
-        }
-
-        private void Update()
-        {
         }
     }
 }
