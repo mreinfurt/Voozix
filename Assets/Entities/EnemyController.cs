@@ -55,16 +55,9 @@ namespace Entities
         /// Reverse directions when hitting screen bounds
         /// </summary>
         /// <param name="direction"></param>
-        private void ReverseDirection(Vector2 direction)
+        private void ReverseDirection()
         {
-            if (direction.x >= 1)
-            {
-                this.Movement.x *= -1;
-            }
-            else
-            {
-                this.Movement.y *= -1;
-            }
+            this.Movement *= -1;
         }
 
         private void Update()
@@ -101,7 +94,8 @@ namespace Entities
                 return;
             }
 
-            this.ReverseDirection(this.Movement);
+            this.ReverseDirection();
+            this.HandleMovement();
         }
 
         #endregion

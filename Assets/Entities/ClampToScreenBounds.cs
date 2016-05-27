@@ -16,7 +16,7 @@ namespace Entities
         /// Gets called whenever the object hits the screen bounds.
         /// Vector2 is a directional vector showing in which way the bounds were hit
         /// </summary>
-        public Action<Vector2> OnHitScreenBounds = vector2 => { };
+        public Action OnHitScreenBounds = () => { };
 
         #endregion
 
@@ -34,13 +34,13 @@ namespace Entities
             if (newPosition.x < screenBounds.x || newPosition.x > screenBounds.x + screenBounds.width)
             {
                 newPosition.x = Mathf.Clamp(newPosition.x, screenBounds.x, screenBounds.x + screenBounds.width);
-                this.OnHitScreenBounds.Invoke(new Vector2(1, 0));
+                this.OnHitScreenBounds.Invoke();
             }
 
             if (newPosition.y < screenBounds.y || newPosition.y > screenBounds.y + screenBounds.height)
             {
                 newPosition.y = Mathf.Clamp(newPosition.y, screenBounds.y, screenBounds.y + screenBounds.height);
-                this.OnHitScreenBounds.Invoke(new Vector2(0, 1));
+                this.OnHitScreenBounds.Invoke();
             }
 
             this.transform.position = newPosition;
