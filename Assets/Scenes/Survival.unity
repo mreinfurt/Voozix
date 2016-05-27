@@ -260,7 +260,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Current Score \nRecord"
+  m_Text: "Current Score \nHighscore"
 --- !u!222 &266264327
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -916,7 +916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1095890509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1464,7 +1464,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press <color="#fffc19">'R'</color> to try again
+  m_Text: Press <color="#fffc19">R</color> to try again
 --- !u!222 &1723250249
 CanvasRenderer:
   m_ObjectHideFlags: 0
