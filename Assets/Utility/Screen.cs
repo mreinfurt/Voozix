@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿#region Namespaces
+
+using UnityEngine;
+
+#endregion
 
 namespace Utility
 {
@@ -7,6 +11,8 @@ namespace Utility
     /// </summary>
     public class Screen
     {
+        #region Methods
+
         /// <summary>
         /// Returns a rect spanning the full visible screen bounds
         /// </summary>
@@ -28,5 +34,7 @@ namespace Utility
 
             return new Rect(xMin, yMin, xMax - xMin, yMax - yMin);
         }
+
+        #endregion
     }
 }

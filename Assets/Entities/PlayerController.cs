@@ -1,17 +1,27 @@
-﻿using Data;
+﻿#region Namespaces
+
+using Data;
 using Events;
 using UnityEngine;
+
+#endregion
 
 namespace Entities
 {
     public class PlayerController : MonoBehaviour
     {
+        #region Fields
+
         private PlayerData data = new PlayerData();
 
         public bool IsAlive = true;
         private Vector2 movement;
 
         public float Speed = 5.5f;
+
+        #endregion
+
+        #region Properties
 
         public int Score
         {
@@ -24,6 +34,10 @@ namespace Entities
                 Player.OnScoreChanged(this.data.Score, difference, this.transform.position);
             }
         }
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -99,5 +113,7 @@ namespace Entities
                     break;
             }
         }
+
+        #endregion
     }
 }

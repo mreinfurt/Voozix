@@ -1,16 +1,26 @@
-﻿using System;
+﻿#region Namespaces
+
+using System;
 using UnityEngine;
 using Screen = Utility.Screen;
+
+#endregion
 
 namespace Entities
 {
     public class ClampToScreenBounds : MonoBehaviour
     {
+        #region Fields
+
         /// <summary>
         /// Gets called whenever the object hits the screen bounds.
         /// Vector2 is a directional vector showing in which way the bounds were hit
         /// </summary>
         public Action<Vector2> OnHitScreenBounds = vector2 => { };
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -35,5 +45,7 @@ namespace Entities
 
             this.transform.position = newPosition;
         }
+
+        #endregion
     }
 }

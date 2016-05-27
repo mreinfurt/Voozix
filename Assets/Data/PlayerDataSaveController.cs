@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region Namespaces
+
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+
+#endregion
 
 namespace Data
 {
@@ -10,7 +14,13 @@ namespace Data
     /// </summary>
     public class PlayerDataSaveController : MonoBehaviour
     {
+        #region Public
+
         private const string GameStateFile = "/gameState.vzx";
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -46,5 +56,7 @@ namespace Data
 
             return playerData;
         }
+
+        #endregion
     }
 }

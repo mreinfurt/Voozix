@@ -1,5 +1,9 @@
-﻿using Events;
+﻿#region Namespaces
+
+using Events;
 using UnityEngine;
+
+#endregion
 
 namespace Game
 {
@@ -13,7 +17,13 @@ namespace Game
 
     public class GameStateController : MonoBehaviour
     {
+        #region Public
+
         public static GameState GameState;
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -26,5 +36,7 @@ namespace Game
         private void Update()
         {
         }
+
+        #endregion
     }
 }

@@ -1,12 +1,18 @@
-﻿using Data;
+﻿#region Namespaces
+
+using Data;
 using Events;
 using JetBrains.Annotations;
 using UnityEngine;
+
+#endregion
 
 namespace Game
 {
     public class SurvivalCameraController : MonoBehaviour
     {
+        #region Fields
+
         private Camera defaultCamera;
         private Vector3 defaultPosition;
         private float shakeAmount;
@@ -15,6 +21,10 @@ namespace Game
         /// Intensity of the camera shake
         /// </summary>
         public float ShakeIntensity = 0.025f;
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -46,5 +56,7 @@ namespace Game
             this.defaultCamera.transform.position = this.defaultPosition;
             this.shakeAmount = 0;
         }
+
+        #endregion
     }
 }

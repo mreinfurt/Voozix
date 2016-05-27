@@ -1,16 +1,26 @@
-﻿using System.Collections.Generic;
+﻿#region Namespaces
+
+using System.Collections.Generic;
 using Data;
 using Entities;
 using UnityEngine;
+
+#endregion
 
 namespace Game
 {
     public class GameManager : MonoBehaviour
     {
+        #region Fields
+
         private readonly List<GameObject> enemies = new List<GameObject>();
 
         public GameObject EnemyPrefab;
         public GameObject Player;
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -21,6 +31,8 @@ namespace Game
         private void Update()
         {
         }
+
+        #endregion
 
         #region Events
 

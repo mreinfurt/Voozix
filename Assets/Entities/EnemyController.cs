@@ -1,13 +1,23 @@
-﻿using UnityEngine;
+﻿#region Namespaces
+
+using UnityEngine;
 using Screen = Utility.Screen;
+
+#endregion
 
 namespace Entities
 {
     public class EnemyController : MonoBehaviour
     {
+        #region Fields
+
         public Vector2 Movement;
 
         public float Speed = 4f;
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -82,5 +92,7 @@ namespace Entities
                 this.Speed * this.Movement.y * Time.deltaTime);
             this.transform.position += position;
         }
+
+        #endregion
     }
 }

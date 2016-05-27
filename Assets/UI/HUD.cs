@@ -1,8 +1,12 @@
-﻿using Data;
+﻿#region Namespaces
+
+using Data;
 using Events;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
+
+#endregion
 
 namespace UI
 {
@@ -11,6 +15,8 @@ namespace UI
     /// </summary>
     public class HUD : MonoBehaviour
     {
+        #region Fields
+
         // Game Over
         public Text GameOverLabel;
         public Text InfoLabel;
@@ -23,6 +29,10 @@ namespace UI
         public Text ScoreTitleLabel;
         public Text ScoreValueLabel;
         private bool showScore;
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -99,5 +109,7 @@ namespace UI
             this.ScoreLabel.gameObject.transform.localScale = new Vector3(this.scoreCurrentScale, this.scoreCurrentScale,
                 this.scoreCurrentScale);
         }
+
+        #endregion
     }
 }

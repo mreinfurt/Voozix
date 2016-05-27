@@ -1,4 +1,8 @@
-﻿using System;
+﻿#region Namespaces
+
+using System;
+
+#endregion
 
 namespace Data
 {
@@ -8,9 +12,15 @@ namespace Data
     [Serializable]
     public class PlayerData
     {
+        #region Fields
+
         public int HighestScore;
 
         private int score;
+
+        #endregion
+
+        #region Properties
 
         public int Score
         {
@@ -24,5 +34,7 @@ namespace Data
                 }
             }
         }
+
+        #endregion
     }
 }

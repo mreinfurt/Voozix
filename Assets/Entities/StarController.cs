@@ -1,10 +1,16 @@
-﻿using UnityEngine;
+﻿#region Namespaces
+
+using UnityEngine;
 using Screen = Utility.Screen;
+
+#endregion
 
 namespace Entities
 {
     public class StarController : MonoBehaviour
     {
+        #region Fields
+
         private float currentAnimationState;
 
         private float currentScale = 1f;
@@ -15,10 +21,18 @@ namespace Entities
 
         public GameObject StarCollectionParticleSystem;
 
+        #endregion
+
+        #region Properties
+
         public float Scale
         {
             get { return this.currentScale; }
         }
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -61,5 +75,7 @@ namespace Entities
                 } while (Vector2.Distance(this.transform.position, playerPosition) < distanceToPlayer);
             }
         }
+
+        #endregion
     }
 }

@@ -1,11 +1,21 @@
-﻿using Entities;
+﻿#region Namespaces
+
+using Entities;
 using UnityEngine;
+
+#endregion
 
 namespace Game
 {
     public class BasicTutorialController : MonoBehaviour
     {
+        #region Fields
+
         [SerializeField] private StarController star;
+
+        #endregion
+
+        #region Methods
 
         private void Start()
         {
@@ -20,5 +30,7 @@ namespace Game
 
             this.transform.position = attachStarPosition;
         }
+
+        #endregion
     }
 }
