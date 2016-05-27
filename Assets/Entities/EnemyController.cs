@@ -96,7 +96,6 @@ namespace Entities
         private void OnCollisionEnter2D(Collision2D collider)
         {
             var colliderTag = collider.gameObject.tag.ToLower();
-            Debug.Log("Collision with " + colliderTag);
             if (colliderTag == "star" || colliderTag == "enemy")
             {
                 return;

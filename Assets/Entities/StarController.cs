@@ -13,8 +13,6 @@ namespace Entities
 
         private float currentAnimationState;
 
-        private float currentScale = 1f;
-
         public GameObject EnemyPrefab;
 
         private bool growing = true;
@@ -27,7 +25,7 @@ namespace Entities
 
         public float Scale
         {
-            get { return this.currentScale; }
+            get { return this.transform.localScale.x; }
         }
 
         #endregion
@@ -41,17 +39,7 @@ namespace Entities
         private void Update()
         {
             this.currentAnimationState += Time.deltaTime;
-            this.currentScale = this.growing
-                ? Mathf.Lerp(0.5f, 1f, this.currentAnimationState)
-                : Mathf.Lerp(1f, 0.5f, this.currentAnimationState);
-
-            if (this.currentAnimationState >= 1f)
-            {
-                this.currentAnimationState = 0;
-                this.growing = !this.growing;
-            }
-
-            this.transform.localScale = new Vector3(this.currentScale, this.currentScale, this.currentScale);
+            this.currentAnimationState = Utility.Tween.LinearScaleInOut(this.gameObject, new Vector2(0.5f, 1f), this.currentAnimationState);
         }
 
         private void OnCollisionEnter2D(Collision2D collisionInformation)

@@ -17,6 +17,9 @@ namespace UI
     {
         #region Fields
 
+        private float currentGameOverAnimationTime = 0;
+        private float currentGameOverScoreAnimationTime = 0;
+
         // Game Over
         public Text GameOverLabel;
         public Text InfoLabel;
@@ -70,6 +73,7 @@ namespace UI
         private void Update()
         {
             this.UpdateScore();
+            this.UpdateGameOver();
 
             if (Input.GetKeyDown(KeyCode.R) && GameStateController.GameState != GameState.InGame)
             {
@@ -78,8 +82,27 @@ namespace UI
             }
         }
 
+        private void UpdateGameOver()
+        {
+            this.currentGameOverAnimationTime += Time.deltaTime;
+            this.currentGameOverScoreAnimationTime += Time.deltaTime;
+
+            this.currentGameOverAnimationTime = Utility.Tween.LinearScaleInOut(this.GameOverLabel.gameObject,
+                new Vector2(0.8f, 1f), this.currentGameOverAnimationTime);
+
+            var gameOverAnimationSpeed = 3f;
+
+            Utility.Tween.LinearScaleOut(this.ScoreHighlightBox.gameObject,
+                new Vector2(0, 1.25f), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
+            Utility.Tween.LinearScaleOut(this.ScoreTitleLabel.gameObject,
+                new Vector2(0, 1), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
+            this.currentGameOverScoreAnimationTime = Utility.Tween.LinearScaleOut(this.ScoreValueLabel.gameObject,
+                new Vector2(0, 1), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
+        }
+
         private void ShowGameOverInformation(bool visible)
         {
+            this.currentGameOverScoreAnimationTime = 0;
             this.GameOverLabel.enabled = visible;
             this.ScoreTitleLabel.enabled = visible;
             this.ScoreValueLabel.enabled = visible;
