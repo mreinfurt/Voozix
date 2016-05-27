@@ -13,7 +13,7 @@ namespace Entities
 
         public Vector2 Movement;
 
-        public float Speed = 4f;
+        public float Speed = 3.5f;
 
         #endregion
 
