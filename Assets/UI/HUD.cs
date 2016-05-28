@@ -62,7 +62,7 @@ namespace UI
                 return;
             }
 
-            this.ScoreLabel.text = "+" + difference;
+            this.ScoreLabel.text = "" + totalScore;
             this.ScoreLabel.gameObject.transform.position = Camera.main.WorldToScreenPoint(position);
             this.ScoreLabel.color = Color.white;
 
