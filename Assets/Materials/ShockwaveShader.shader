@@ -72,7 +72,7 @@
 				c.rgb *= c.a;
 			
 				float time = (_Time.y - _StartTime) * 1.25;
-				float circleRadiusWidth = 0.025;
+				float circleRadiusWidth = 0.045;
 
 				float distanceToCenter = distance(IN.texcoord, _ShockwaveCenter.xy);
 				if (distanceToCenter <= time + circleRadiusWidth && distanceToCenter >= time - circleRadiusWidth) {
