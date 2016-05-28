@@ -40,7 +40,7 @@ namespace UI
         private void Start()
         {
             Player.OnScoreChanged += this.HandleScoreChanged;
-            Player.OnDeath += this.HandlePlayerDeath;
+            Player.OnDeathBegin += this.HandlePlayerDeath;
 
             this.ScoreLabel.text = string.Empty;
         }

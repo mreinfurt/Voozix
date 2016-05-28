@@ -25,7 +25,7 @@ namespace Game
         private void Start()
         {
             Application.targetFrameRate = 60;
-            Events.Player.OnDeath += this.HandlePlayerDeath;
+            Events.Player.OnDeathBegin += this.HandlePlayerDeath;
             Events.Player.OnStarCollected += this.HandleStarCollected;
         }
 

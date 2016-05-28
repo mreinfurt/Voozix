@@ -2,6 +2,7 @@
 
 using Data;
 using Events;
+using JetBrains.Annotations;
 using UnityEngine;
 
 #endregion
@@ -107,11 +108,25 @@ namespace Entities
                     Player.OnStarCollected();
                     break;
                 case "enemy":
-                    Player.OnDeath(this.data);
-                    PlayerDataSaveController.Save(this.data);
-                    this.IsAlive = false;
+                    Player.OnDeathBegin(this.data);
+                    this.HandleDeathBegin();
                     break;
             }
+        }
+
+        private void HandleDeathBegin()
+        {
+            PlayerDataSaveController.Save(this.data);
+            this.GetComponent<AudioSource>().Play();
+            this.IsAlive = false;
+
+            Invoke("HandleDeathEnd", 0.3f);
+        }
+
+        [UsedImplicitly]
+        private void HandleDeathEnd()
+        {
+            Player.OnDeathEnd(this.data);
         }
 
         #endregion

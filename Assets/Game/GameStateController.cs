@@ -29,8 +29,19 @@ namespace Game
         {
             GameState = GameState.InGame;
 
-            Player.OnDeath += data => GameState = GameState.PostGame;
-            Global.OnReset += () => GameState = GameState.InGame;
+            Player.OnDeathBegin += data =>
+            {
+                const GameState newGameState = GameState.PostGame;
+                Global.OnGameStateChanged(GameState, newGameState);
+                GameState = newGameState;
+            };
+
+            Global.OnReset += () =>
+            {
+                const GameState newGameState = GameState.InGame;
+                Global.OnGameStateChanged(GameState, newGameState);
+                GameState = newGameState;
+            };
         }
 
         private void Update()

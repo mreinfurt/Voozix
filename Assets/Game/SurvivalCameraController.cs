@@ -28,16 +28,21 @@ namespace Game
 
         private void Start()
         {
-            Player.OnDeath += this.OnDeath;
-            this.defaultCamera = Camera.main;
+            Player.OnDeathBegin += this.OnDeathBegin;
+            Player.OnDeathEnd += this.OnDeathEnd;
 
+            this.defaultCamera = Camera.main;
             this.defaultPosition = this.defaultCamera.transform.position;
         }
 
-        private void OnDeath(PlayerData playerData)
+        private void OnDeathBegin(PlayerData playerData)
         {
             this.shakeAmount = this.ShakeIntensity;
-            Invoke("StopShaking", 0.1f);
+        }
+
+        private void OnDeathEnd(PlayerData playerData)
+        {
+            this.StopShaking();
         }
 
         private void Update()
@@ -50,7 +55,6 @@ namespace Game
             this.defaultCamera.transform.position = cameraChange;
         }
 
-        [UsedImplicitly]
         private void StopShaking()
         {
             this.defaultCamera.transform.position = this.defaultPosition;
