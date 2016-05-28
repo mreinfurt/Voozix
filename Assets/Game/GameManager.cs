@@ -37,7 +37,7 @@ namespace Game
 
         #region Events
 
-        private void HandlePlayerDeath(PlayerData data)
+        private void HandlePlayerDeath(PlayerData data, Vector2 position)
         {
             foreach (var enemy in this.enemies)
             {

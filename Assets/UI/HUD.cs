@@ -40,12 +40,12 @@ namespace UI
         private void Start()
         {
             Player.OnScoreChanged += this.HandleScoreChanged;
-            Player.OnDeathBegin += this.HandlePlayerDeath;
+            Player.OnDeathEnd += this.HandlePlayerDeath;
 
             this.ScoreLabel.text = string.Empty;
         }
 
-        private void HandlePlayerDeath(PlayerData playerData)
+        private void HandlePlayerDeath(PlayerData playerData, Vector2 position)
         {
             this.ScoreValueLabel.text = "<color=\"#fffc19\">" + playerData.Score + "</color>\n<color=\"#fffc19\">" +
                                         playerData.HighestScore + "</color>";

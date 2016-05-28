@@ -20,12 +20,12 @@ namespace Events
         /// <summary>
         /// Called when the player dies
         /// </summary>
-        public static Action<PlayerData> OnDeathBegin = data => {};
+        public static Action<PlayerData, Vector2> OnDeathBegin = (data, position) => {};
 
         /// <summary>
         /// Called when the player died
         /// </summary>
-        public static Action<PlayerData> OnDeathEnd = data => {};
+        public static Action<PlayerData, Vector2> OnDeathEnd = (data, position) => {};
 
         /// <summary>
         /// Called when the score of the player changes

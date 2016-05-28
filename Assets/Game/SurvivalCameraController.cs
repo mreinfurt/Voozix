@@ -2,7 +2,6 @@
 
 using Data;
 using Events;
-using JetBrains.Annotations;
 using UnityEngine;
 
 #endregion
@@ -35,22 +34,22 @@ namespace Game
             this.defaultPosition = this.defaultCamera.transform.position;
         }
 
-        private void OnDeathBegin(PlayerData playerData)
+        private void OnDeathBegin(PlayerData playerData, Vector2 position)
         {
             this.shakeAmount = this.ShakeIntensity;
         }
 
-        private void OnDeathEnd(PlayerData playerData)
+        private void OnDeathEnd(PlayerData playerData, Vector2 position)
         {
             this.StopShaking();
         }
 
         private void Update()
         {
-            var quakeAmt = Random.value * this.shakeAmount * 2 - this.shakeAmount;
+            var quakeAmount = Random.value * this.shakeAmount * 2 - this.shakeAmount;
             var cameraChange = this.defaultCamera.transform.position;
-            cameraChange.y += quakeAmt;
-            cameraChange.x += quakeAmt;
+            cameraChange.y += quakeAmount;
+            cameraChange.x += quakeAmount;
 
             this.defaultCamera.transform.position = cameraChange;
         }

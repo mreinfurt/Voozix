@@ -108,7 +108,7 @@ namespace Entities
                     Player.OnStarCollected();
                     break;
                 case "enemy":
-                    Player.OnDeathBegin(this.data);
+                    Player.OnDeathBegin(this.data, this.transform.position);
                     this.HandleDeathBegin();
                     break;
             }
@@ -126,7 +126,7 @@ namespace Entities
         [UsedImplicitly]
         private void HandleDeathEnd()
         {
-            Player.OnDeathEnd(this.data);
+            Player.OnDeathEnd(this.data, this.transform.position);
         }
 
         #endregion

@@ -29,7 +29,7 @@ namespace Game
         {
             GameState = GameState.InGame;
 
-            Player.OnDeathBegin += data =>
+            Player.OnDeathBegin += (data, position) =>
             {
                 const GameState newGameState = GameState.PostGame;
                 Global.OnGameStateChanged(GameState, newGameState);

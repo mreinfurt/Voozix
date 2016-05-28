@@ -15,8 +15,6 @@ namespace Entities
 
         public GameObject EnemyPrefab;
 
-        private bool growing = true;
-
         public GameObject StarCollectionParticleSystem;
 
         #endregion
@@ -39,21 +37,19 @@ namespace Entities
         private void Update()
         {
             this.currentAnimationState += Time.deltaTime;
-            this.currentAnimationState = Utility.Tween.LinearScaleInOut(this.gameObject, new Vector2(0.5f, 1f), this.currentAnimationState);
+            this.currentAnimationState = Utility.Tween.LinearScaleInOut(this.gameObject, new Vector2(0.5f, 1f),
+                this.currentAnimationState);
         }
 
         private void OnCollisionEnter2D(Collision2D collisionInformation)
         {
             if (collisionInformation.gameObject.tag.ToLower() == "player")
             {
-                this.StarCollectionParticleSystem.transform.position = this.transform.position;
-                //this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Stop();
-                //this.StarCollectionParticleSystem.GetComponent<ParticleSystem>().Play();
                 this.GetComponent<AudioSource>().Play();
 
                 var playerPosition = collisionInformation.gameObject.transform.position;
                 var screenBounds = Screen.GetScreenSpaceBounds();
-                var distanceToPlayer = 1.5f;
+                const float distanceToPlayer = 1.5f;
 
                 do
                 {

@@ -5,6 +5,8 @@
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 		_Color("Tint", Color) = (1,1,1,1)
+		_ShockwaveCenter("Shockwave Center", Vector) = (0.5, 0.5, 0, 0)
+		_StartTime("Start Time", Float) = 0.5
 	}
 	
 	SubShader
@@ -47,6 +49,8 @@
 			};
 
 			fixed4 _Color;
+			fixed4 _ShockwaveCenter;
+			fixed _StartTime;
 
 			// Vertex-Shader
 			v2f vert(appdata_t IN)
@@ -55,10 +59,6 @@
 				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
 				OUT.texcoord = IN.texcoord;
 				OUT.color = IN.color * _Color;
-
-				// TODO: Add center position. 
-				// Distort texCoord based on time and distance to center position.
-
 
 				return OUT;
 			}
@@ -70,6 +70,22 @@
 			{
 				fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
 				c.rgb *= c.a;
+			
+				float time = (_Time.y - _StartTime);
+
+				float distanceToCenter = distance(IN.texcoord, _ShockwaveCenter.xy);
+				if (distanceToCenter <= time + 0.025 && distanceToCenter >= time - 0.025) {
+
+					float ecart = (distanceToCenter - time); // -0.02 to 0.02
+					float powEcart = 1.0 - pow(abs(ecart * 40.0), 0.4); // -1 to 1
+					float ecartTime = ecart  * powEcart; // -0.02 to 0.02
+
+					float2 diff = normalize(IN.texcoord - _ShockwaveCenter.xy); // Direction of the shockwave
+					float2 newTexCoord = IN.texcoord + (diff * ecartTime);
+
+					c = tex2D(_MainTex, newTexCoord) * IN.color * 1.25; // Make it a bit brighter as well
+				}
+
 				return c;
 			}
 			ENDCG
