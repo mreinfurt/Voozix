@@ -1,5 +1,6 @@
 ﻿#region Namespaces
 
+using System;
 using Data;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Game
         private void Start()
         {
             this.renderer = this.GetComponent<Renderer>();
-            this.renderer.material.SetFloat("_StartTime", -50);
+            this.renderer.material.SetFloat("_StartTime", -int.MaxValue);
 
             Events.Player.OnDeathBegin += OnDeathBegin;
         }
@@ -28,7 +29,10 @@ namespace Game
         private void OnDeathBegin(PlayerData playerData, Vector2 position)
         {
             var screenPosition = Camera.main.WorldToScreenPoint(position);
-            var texCoordPosition = new Vector2(screenPosition.x / (float)Screen.width, screenPosition.y / (float)Screen.height);
+            var texCoordPosition = new Vector2(screenPosition.x / Screen.width,
+                screenPosition.y / Screen.height);
+
+            Debug.Log("Shockwave: " + texCoordPosition + "... " + texCoordPosition.x);
 
             this.renderer.material.SetFloat("_StartTime", Time.time);
             this.renderer.material.SetVector("_ShockwaveCenter", texCoordPosition);

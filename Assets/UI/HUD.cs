@@ -103,6 +103,7 @@ namespace UI
         private void ShowGameOverInformation(bool visible)
         {
             this.currentGameOverScoreAnimationTime = 0;
+            this.UpdateGameOver();
             this.GameOverLabel.enabled = visible;
             this.ScoreTitleLabel.enabled = visible;
             this.ScoreValueLabel.enabled = visible;
