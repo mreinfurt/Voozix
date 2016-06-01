@@ -18,6 +18,8 @@
 			"CanUseSpriteAtlas" = "True"
 		}
 
+		GrabPass{ "_SharedGrabTexture" }
+
 		Cull Off
 		Lighting Off
 		ZWrite Off
@@ -47,6 +49,7 @@
 			};
 
 			fixed4 _Color;
+			sampler2D _SharedGrabTexture;
 
 			// Vertex-Shader
 			v2f vert(appdata_t IN)
@@ -60,14 +63,23 @@
 			}
 
 			sampler2D _MainTex;
+			float4 _MainTex_TexelSize;
 
 			// Fragment-Shader
 			fixed4 frag(v2f IN) : SV_Target
 			{
+				float2 uv = IN.texcoord;
 				fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
 				c.rgb *= c.a;
 
-				return c;
+				float4 size = _MainTex_TexelSize;
+				float4 bg =	tex2D(_SharedGrabTexture, uv + float2(-size.x, size.y)) + tex2D(_SharedGrabTexture, uv + float2(0, size.y)) + tex2D(_SharedGrabTexture, uv + float2(size.x, size.y)) +
+							tex2D(_SharedGrabTexture, uv + float2(-size.x, 0)) + tex2D(_SharedGrabTexture, uv + float2(0, 0)) + tex2D(_SharedGrabTexture, uv + float2(size.x, 0)) +
+							tex2D(_SharedGrabTexture, uv + float2(-size.x, -size.y)) + tex2D(_SharedGrabTexture, uv + float2(0, -size.y)) + tex2D(_SharedGrabTexture, uv + float2(size.x, -size.y));
+
+				bg = bg / 9;
+
+				return bg * c;
 			}
 
 			ENDCG
