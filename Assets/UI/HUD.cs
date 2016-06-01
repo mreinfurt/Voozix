@@ -75,7 +75,14 @@ namespace UI
             this.UpdateScore();
             this.UpdateGameOver();
 
-            if (Input.GetKeyDown(KeyCode.R) && GameStateController.GameState != GameState.InGame)
+            var isResetInput = UnityEngine.Input.GetKeyDown(KeyCode.R);
+
+            if (UnityEngine.Input.touchCount > 0)
+            {
+                isResetInput = isResetInput | UnityEngine.Input.GetTouch(0).phase == TouchPhase.Ended;
+            }
+
+            if (isResetInput && GameStateController.GameState != GameState.InGame)
             {
                 Global.OnReset();
                 this.ShowGameOverInformation(false);

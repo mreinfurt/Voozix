@@ -65,10 +65,10 @@ namespace Entities
 
         private void HandleInput()
         {
-            this.movement.x = Input.GetAxis(Game.Definitions.Player.HorizontalMovement) +
-                              Input.GetAxis(Game.Definitions.Player.JoystickHorizontalMovement);
-            this.movement.y = Input.GetAxis(Game.Definitions.Player.VerticalMovement) +
-                              Input.GetAxis(Game.Definitions.Player.JoystickVerticalMovement);
+            this.movement.x = UnityEngine.Input.GetAxis(Game.Definitions.Player.HorizontalMovement) +
+                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickHorizontalMovement);
+            this.movement.y = UnityEngine.Input.GetAxis(Game.Definitions.Player.VerticalMovement) +
+                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickVerticalMovement);
             this.movement.Normalize();
         }
 
