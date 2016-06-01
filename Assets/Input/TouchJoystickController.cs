@@ -78,7 +78,6 @@ namespace Input
                 case TouchPhase.Began:
                     this.isVisible = false;
                     this.position = touch.position;
-                    this.joystickGameObject.transform.position = Camera.main.ScreenToWorldPoint(this.position);
                     this.joystickAreaGameObject.transform.position = Camera.main.ScreenToWorldPoint(this.position);
                     break;
                 case TouchPhase.Ended:
@@ -88,6 +87,8 @@ namespace Input
 
             var delta = touch.position - this.position;
             var vectorLength = Mathf.Sqrt(Mathf.Pow(delta.x, 2) + Mathf.Pow(delta.y, 2));
+
+            this.joystickGameObject.transform.position = Camera.main.ScreenToWorldPoint(this.position);
 
             if (vectorLength > JoystickOffsetMaximum)
             {

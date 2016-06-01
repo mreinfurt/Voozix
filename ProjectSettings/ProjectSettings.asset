@@ -47,7 +47,7 @@ PlayerSettings:
   usePlayerLog: 0
   bakeCollisionMeshes: 1
   forceSingleInstance: 0
-  resizableWindow: 0
+  resizableWindow: 1
   useMacAppStoreValidation: 0
   gpuSkinning: 0
   xboxPIXTextureCapture: 0
