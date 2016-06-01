@@ -59,6 +59,8 @@ namespace Input
             this.joystickAreaGameObject = new GameObject();
             this.joystickAreaRenderer = joystickAreaGameObject.AddComponent<SpriteRenderer>();
             this.joystickAreaRenderer.sprite = this.JoystickArea;
+
+            this.joystickGameObject.transform.parent = this.joystickAreaGameObject.transform;
         }
 
         void Update()
@@ -86,16 +88,14 @@ namespace Input
             }
 
             var delta = touch.position - this.position;
-            var vectorLength = Mathf.Sqrt(Mathf.Pow(delta.x, 2) + Mathf.Pow(delta.y, 2));
 
-            this.joystickGameObject.transform.position = Camera.main.ScreenToWorldPoint(this.position);
-
-            if (vectorLength > JoystickOffsetMaximum)
+            if (delta.magnitude > JoystickOffsetMaximum)
             {
-                this.x *= 1 / vectorLength * JoystickOffsetMaximum;
-                this.y *= 1 / vectorLength * JoystickOffsetMaximum;
+                this.x *= 1 / delta.magnitude * JoystickOffsetMaximum;
+                this.y *= 1 / delta.magnitude * JoystickOffsetMaximum;
             }
 
+            this.joystickGameObject.transform.position = Camera.main.ScreenToWorldPoint(this.position + new Vector2(this.x, this.y));
             this.x = delta.x / JoystickOffsetMaximum;
             this.y = delta.y / JoystickOffsetMaximum;
         }

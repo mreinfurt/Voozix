@@ -2,6 +2,7 @@
 
 using Data;
 using Events;
+using Input;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace Entities
         private Vector2 movement;
 
         public float Speed = 5.5f;
+        private TouchJoystickController touchController;
 
         #endregion
 
@@ -44,6 +46,8 @@ namespace Entities
         {
             this.data = PlayerDataSaveController.Load();
             Global.OnReset += OnReset;
+
+            this.touchController = this.GetComponent<TouchJoystickController>();
         }
 
         private void OnReset()
@@ -66,9 +70,11 @@ namespace Entities
         private void HandleInput()
         {
             this.movement.x = UnityEngine.Input.GetAxis(Game.Definitions.Player.HorizontalMovement) +
-                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickHorizontalMovement);
+                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickHorizontalMovement) +
+                              this.touchController.Value.x;
             this.movement.y = UnityEngine.Input.GetAxis(Game.Definitions.Player.VerticalMovement) +
-                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickVerticalMovement);
+                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickVerticalMovement) +
+                              this.touchController.Value.y;
             this.movement.Normalize();
         }
 
