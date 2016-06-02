@@ -79,7 +79,7 @@ namespace UI
 
             if (UnityEngine.Input.touchCount > 0)
             {
-                isResetInput = isResetInput | UnityEngine.Input.GetTouch(0).phase == TouchPhase.Ended;
+				isResetInput = isResetInput | UnityEngine.Input.GetTouch(0).phase == TouchPhase.Began;
             }
 
             if (isResetInput && GameStateController.GameState != GameState.InGame)

@@ -69,13 +69,18 @@ namespace Entities
 
         private void HandleInput()
         {
-            this.movement.x = UnityEngine.Input.GetAxis(Game.Definitions.Player.HorizontalMovement) +
-                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickHorizontalMovement) +
-                              this.touchController.Value.x;
+			this.movement.x = UnityEngine.Input.GetAxis (Game.Definitions.Player.HorizontalMovement) +
+							  UnityEngine.Input.GetAxis (Game.Definitions.Player.JoystickHorizontalMovement);
             this.movement.y = UnityEngine.Input.GetAxis(Game.Definitions.Player.VerticalMovement) +
-                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickVerticalMovement) +
-                              this.touchController.Value.y;
-            this.movement.Normalize();
+                              UnityEngine.Input.GetAxis(Game.Definitions.Player.JoystickVerticalMovement);
+
+			// Keyboard and Controller input is always absolute
+			this.movement.Normalize();
+
+			if (this.movement.magnitude == 0) {
+				this.movement.x = this.touchController.Value.x;
+				this.movement.y = this.touchController.Value.y;
+			}
         }
 
         private void HandleMovement()

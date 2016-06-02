@@ -10,7 +10,7 @@ namespace Input
     {
         #region Public
 
-        private const float JoystickOffsetMaximum = 20f;
+        private const float JoystickOffsetMaximum = 25f;
 
         #endregion
 
@@ -31,6 +31,8 @@ namespace Input
 
         private float x;
         private float y;
+
+		private Color color = new Color(255, 255, 255, 128);
 
         #endregion
 
@@ -65,8 +67,8 @@ namespace Input
 
         void Update()
         {
-            this.joystickRenderer.color = this.isVisible ? Color.white : Color.clear;
-            this.joystickAreaRenderer.color = this.isVisible ? Color.white : Color.clear;
+			this.joystickRenderer.color = this.isVisible ? this.color : Color.clear;
+			this.joystickAreaRenderer.color = this.isVisible ? this.color : Color.clear;
 
             if (UnityEngine.Input.touchCount <= 0)
             {
@@ -78,9 +80,10 @@ namespace Input
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    this.isVisible = false;
+                    this.isVisible = true;
                     this.position = touch.position;
-                    this.joystickAreaGameObject.transform.position = Camera.main.ScreenToWorldPoint(this.position);
+					var worldPosition = Camera.main.ScreenToWorldPoint(this.position);
+					this.joystickAreaGameObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
                     break;
                 case TouchPhase.Ended:
                     this.isVisible = false;
@@ -91,11 +94,12 @@ namespace Input
 
             if (delta.magnitude > JoystickOffsetMaximum)
             {
-                this.x *= 1 / delta.magnitude * JoystickOffsetMaximum;
-                this.y *= 1 / delta.magnitude * JoystickOffsetMaximum;
+                delta.x *= 1 / delta.magnitude * JoystickOffsetMaximum;
+                delta.y *= 1 / delta.magnitude * JoystickOffsetMaximum;
             }
 
-            this.joystickGameObject.transform.position = Camera.main.ScreenToWorldPoint(this.position + new Vector2(this.x, this.y));
+			var joystickWorldPosition = Camera.main.ScreenToWorldPoint(this.position + new Vector2(delta.x, delta.y));
+			this.joystickGameObject.transform.position = new Vector3(joystickWorldPosition.x, joystickWorldPosition.y, 0);
             this.x = delta.x / JoystickOffsetMaximum;
             this.y = delta.y / JoystickOffsetMaximum;
         }
