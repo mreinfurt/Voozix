@@ -591,6 +591,7 @@ GameObject:
   - 222: {fileID: 715058627}
   - 114: {fileID: 715058626}
   - 114: {fileID: 715058625}
+  - 95: {fileID: 715058628}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -629,15 +630,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+    m_Mode: 2
+    m_SelectOnUp: {fileID: 920286246}
+    m_SelectOnDown: {fileID: 715058625}
+    m_SelectOnLeft: {fileID: 920286246}
+    m_SelectOnRight: {fileID: 715058625}
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.8088235, g: 0.8088235, b: 0.8088235, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -691,6 +692,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 715058623}
+--- !u!95 &715058628
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715058623}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ea2170937d5381449a35ee2be508f75, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &727369528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,15 +1254,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+    m_Mode: 2
+    m_SelectOnUp: {fileID: 920286246}
+    m_SelectOnDown: {fileID: 715058625}
+    m_SelectOnLeft: {fileID: 920286246}
+    m_SelectOnRight: {fileID: 715058625}
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.18651702, g: 0.9411765, b: 0.12456748, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1307,7 +1325,7 @@ Animator:
   m_GameObject: {fileID: 920286244}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: be4ed29263d8368419b88f1a2aa31fc9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0ea2170937d5381449a35ee2be508f75, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

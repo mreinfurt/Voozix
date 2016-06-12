@@ -73,10 +73,10 @@ InputManager:
     m_Name: Submit
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: enter
-    positiveButton: 
+    negativeButton: 
+    positiveButton: return
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: space
     gravity: 1000
     dead: 0.2
     sensitivity: 100

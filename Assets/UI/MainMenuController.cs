@@ -24,6 +24,11 @@ public class MainMenuController : MonoBehaviour
         this.PlaySurvivalButton.onClick.AddListener(HandlePlaySurvivalButtonClick);
         this.PlayCampaignButton.onClick.AddListener(HandlePlayCampaignButtonClick);
         this.Quit.onClick.AddListener(HandleQuitButtonClick);
+
+        if (SystemInfo.deviceType != DeviceType.Handheld)
+        {
+            this.PlaySurvivalButton.Select();
+        }
     }
 
     private void HandleQuitButtonClick()
