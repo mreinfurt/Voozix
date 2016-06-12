@@ -165,6 +165,12 @@ namespace UI
             this.ScoreLabel.gameObject.transform.localScale = new Vector3(this.scoreCurrentScale, this.scoreCurrentScale, this.scoreCurrentScale);
         }
 
+        private void OnDestroy()
+        {
+            Player.OnScoreChanged -= this.HandleScoreChanged;
+            Player.OnDeathEnd -= this.HandlePlayerDeath;
+        }
+
         #endregion
     }
 }

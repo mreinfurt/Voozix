@@ -34,12 +34,22 @@ namespace Game
 
             Debug.Log("Shockwave: " + texCoordPosition + "... " + texCoordPosition.x);
 
-            this.renderer.material.SetFloat("_StartTime", Time.time);
+            if (this.renderer == null)
+            {
+                this.renderer = this.GetComponent<Renderer>();
+            }
+
+            this.renderer.material.SetFloat("_StartTime", Time.timeSinceLevelLoad);
             this.renderer.material.SetVector("_ShockwaveCenter", texCoordPosition);
         }
 
         private void Update()
         {
+        }
+
+        private void OnDestroy()
+        {
+            Events.Player.OnDeathBegin -= OnDeathBegin;
         }
 
         #endregion
