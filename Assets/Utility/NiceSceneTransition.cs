@@ -1,73 +1,76 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class NiceSceneTransition : MonoBehaviour {
+namespace Utility
+{
+    public class NiceSceneTransition : MonoBehaviour {
 
-    public static NiceSceneTransition instance;
+        public static NiceSceneTransition instance;
 
-    public float transitionTime = 1.0f;
+        public float transitionTime = 1.0f;
 
-    public bool fadeIn;
-    public bool fadeOut;
+        public bool fadeIn;
+        public bool fadeOut;
 
-    public Image fadeImg;
+        public Image fadeImg;
 
-    float time = 0f;
+        float time = 0f;
 
-    // Use this for initialization
-    void Awake()
-    {
-        if (instance == null) {
-            DontDestroyOnLoad(transform.gameObject);
-            instance = this;
-            if (fadeIn) {
-                fadeImg.color = new Color(fadeImg.color.r, fadeImg.color.g, fadeImg.color.b, 1.0f);
+        // Use this for initialization
+        void Awake()
+        {
+            if (instance == null) {
+                DontDestroyOnLoad(this.transform.gameObject);
+                instance = this;
+                if (this.fadeIn) {
+                    this.fadeImg.color = new Color(this.fadeImg.color.r, this.fadeImg.color.g, this.fadeImg.color.b, 1.0f);
+                }
+            } else {
+                Destroy(this.transform.gameObject);
             }
-        } else {
-            Destroy(transform.gameObject);
         }
-    }
 
-    void OnEnable()
-    {
-        if (fadeIn)
+        void OnEnable()
         {
-            StartCoroutine(StartScene());
+            if (this.fadeIn)
+            {
+                this.StartCoroutine(this.StartScene());
+            }
         }
-    }
 
-    public void LoadScene(string level)
-    {
-        StartCoroutine(EndScene(level));
-    }
-
-    IEnumerator StartScene()
-    {
-        time = 1.0f;
-        yield return null;
-        while (time >= 0.0f)
+        public void LoadScene(string level)
         {
-            fadeImg.color = new Color(fadeImg.color.r, fadeImg.color.g, fadeImg.color.b, time);
-            time -= Time.deltaTime * (1.0f / transitionTime);
+            this.StartCoroutine(this.EndScene(level));
+        }
+
+        IEnumerator StartScene()
+        {
+            this.time = 1.0f;
             yield return null;
+            while (this.time >= 0.0f)
+            {
+                this.fadeImg.color = new Color(this.fadeImg.color.r, this.fadeImg.color.g, this.fadeImg.color.b, this.time);
+                this.time -= Time.deltaTime * (1.0f / this.transitionTime);
+                yield return null;
+            }
+            this.fadeImg.gameObject.SetActive(false);
         }
-        fadeImg.gameObject.SetActive(false);
-    }
 
-    IEnumerator EndScene(string nextScene)
-    {
-        fadeImg.gameObject.SetActive(true);
-        time = 0.0f;
-        yield return null;
-        while (time <= 1.0f)
+        IEnumerator EndScene(string nextScene)
         {
-            fadeImg.color = new Color(fadeImg.color.r, fadeImg.color.g, fadeImg.color.b, time);
-            time += Time.deltaTime * (1.0f/transitionTime);
+            this.fadeImg.gameObject.SetActive(true);
+            this.time = 0.0f;
             yield return null;
+            while (this.time <= 1.0f)
+            {
+                this.fadeImg.color = new Color(this.fadeImg.color.r, this.fadeImg.color.g, this.fadeImg.color.b, this.time);
+                this.time += Time.deltaTime * (1.0f/this.transitionTime);
+                yield return null;
+            }
+            SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+            this.StartCoroutine(this.StartScene());
         }
-        SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
-        StartCoroutine(StartScene());
     }
 }

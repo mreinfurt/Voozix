@@ -14,8 +14,6 @@ namespace Entities
     {
         #region Fields
 
-        private PlayerData data = new PlayerData();
-
         public bool IsAlive = true;
         private Vector2 movement;
 
@@ -28,13 +26,13 @@ namespace Entities
 
         public int Score
         {
-            get { return this.data.Score; }
+            get { return PlayerDataHolder.Instance.Data.Score; }
             private set
             {
-                var difference = value - this.data.Score;
-                this.data.Score = value;
+                var difference = value - PlayerDataHolder.Instance.Data.Score;
+                PlayerDataHolder.Instance.Data.Score = value;
 
-                Player.OnScoreChanged(this.data.Score, difference, this.transform.position);
+                Player.OnScoreChanged(PlayerDataHolder.Instance.Data.Score, difference, this.transform.position);
             }
         }
 
@@ -44,9 +42,7 @@ namespace Entities
 
         private void Start()
         {
-            this.data = PlayerDataSaveController.Load();
             Global.OnReset += OnReset;
-
             this.touchController = this.GetComponent<TouchJoystickController>();
         }
 
@@ -94,7 +90,7 @@ namespace Entities
                     Player.OnStarCollected();
                     break;
                 case "enemy":
-                    Player.OnDeathBegin(this.data, this.transform.position);
+                    Player.OnDeathBegin(PlayerDataHolder.Instance.Data, this.transform.position);
                     this.HandleDeathBegin();
                     break;
             }
@@ -102,7 +98,7 @@ namespace Entities
 
         private void HandleDeathBegin()
         {
-            PlayerDataSaveController.Save(this.data);
+            PlayerDataSaveController.Save(PlayerDataHolder.Instance.Data);
             this.GetComponent<AudioSource>().Play();
             this.IsAlive = false;
 
@@ -112,7 +108,7 @@ namespace Entities
         [UsedImplicitly]
         private void HandleDeathEnd()
         {
-            Player.OnDeathEnd(this.data, this.transform.position);
+            Player.OnDeathEnd(PlayerDataHolder.Instance.Data, this.transform.position);
         }
 
         #endregion
