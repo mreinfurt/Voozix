@@ -5,7 +5,7 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -47,7 +47,7 @@ PlayerSettings:
   usePlayerLog: 0
   bakeCollisionMeshes: 1
   forceSingleInstance: 0
-  resizableWindow: 0
+  resizableWindow: 1
   useMacAppStoreValidation: 0
   gpuSkinning: 0
   xboxPIXTextureCapture: 0
@@ -115,7 +115,7 @@ PlayerSettings:
   VertexChannelCompressionMask:
     serializedVersion: 2
     m_Bits: 238
-  iPhoneSdkVersion: 988
+  iPhoneSdkVersion: 989
   iPhoneTargetOSVersion: 22
   tvOSSdkVersion: 0
   tvOSTargetOSVersion: 900
@@ -178,6 +178,36 @@ PlayerSettings:
       m_Icon: {fileID: 0}
       m_Width: 128
       m_Height: 128
+  - m_BuildTarget: Standalone
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 1024
+      m_Height: 1024
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 834d2c93ac52b1846b75083a225933c4, type: 3}
+      m_Width: 512
+      m_Height: 512
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: cfe6b7ef6ddf05b4dbabb6eeed763d96, type: 3}
+      m_Width: 256
+      m_Height: 256
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 128
+      m_Height: 128
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 48
+      m_Height: 48
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 32
+      m_Height: 32
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 16
+      m_Height: 16
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   webPlayerTemplate: APPLICATION:Default

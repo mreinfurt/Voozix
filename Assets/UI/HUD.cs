@@ -1,10 +1,12 @@
 ﻿#region Namespaces
 
+using System;
 using Data;
 using Events;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
+using Input = UnityEngine.Input;
 
 #endregion
 
@@ -43,12 +45,39 @@ namespace UI
             Player.OnDeathEnd += this.HandlePlayerDeath;
 
             this.ScoreLabel.text = string.Empty;
+
+            switch (SystemInfo.deviceType)
+            {
+                case DeviceType.Unknown:
+                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
+                    break;
+
+                case DeviceType.Handheld:
+                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Touch.TryAgain;
+                    break;
+
+                case DeviceType.Console:
+                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Console.TryAgain;
+                    break;
+
+                case DeviceType.Desktop:
+                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
+                    break;
+
+                default:
+                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
+                    break;
+            }
+
+            if (UnityEngine.Input.GetJoystickNames().Length > 0 && !string.IsNullOrEmpty(UnityEngine.Input.GetJoystickNames()[0]))
+            {
+                this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Console.TryAgain;
+            }
         }
 
         private void HandlePlayerDeath(PlayerData playerData, Vector2 position)
         {
-            this.ScoreValueLabel.text = "<color=\"#fffc19\">" + playerData.Score + "</color>\n<color=\"#fffc19\">" +
-                                        playerData.HighestScore + "</color>";
+            this.ScoreValueLabel.text = "<color=\"#fffc19\">" + playerData.Score + "</color>\n<color=\"#fffc19\">" + playerData.HighestScore + "</color>";
             this.ShowGameOverInformation(true);
         }
 
@@ -75,7 +104,14 @@ namespace UI
             this.UpdateScore();
             this.UpdateGameOver();
 
-            if (Input.GetKeyDown(KeyCode.R) && GameStateController.GameState != GameState.InGame)
+            var isResetInput = UnityEngine.Input.GetKeyDown(KeyCode.R);
+
+            if (UnityEngine.Input.touchCount > 0)
+            {
+				isResetInput = isResetInput | UnityEngine.Input.GetTouch(0).phase == TouchPhase.Began;
+            }
+
+            if (isResetInput && GameStateController.GameState != GameState.InGame)
             {
                 Global.OnReset();
                 this.ShowGameOverInformation(false);
@@ -87,17 +123,13 @@ namespace UI
             this.currentGameOverAnimationTime += Time.deltaTime;
             this.currentGameOverScoreAnimationTime += Time.deltaTime;
 
-            this.currentGameOverAnimationTime = Utility.Tween.LinearScaleInOut(this.GameOverLabel.gameObject,
-                new Vector2(0.8f, 1f), this.currentGameOverAnimationTime);
+            this.currentGameOverAnimationTime = Utility.Tween.LinearScaleInOut(this.GameOverLabel.gameObject, new Vector2(0.8f, 1f), this.currentGameOverAnimationTime);
 
             var gameOverAnimationSpeed = 3f;
 
-            Utility.Tween.LinearScaleOut(this.ScoreHighlightBox.gameObject,
-                new Vector2(0, 1.25f), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
-            Utility.Tween.LinearScaleOut(this.ScoreTitleLabel.gameObject,
-                new Vector2(0, 1), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
-            this.currentGameOverScoreAnimationTime = Utility.Tween.LinearScaleOut(this.ScoreValueLabel.gameObject,
-                new Vector2(0, 1), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
+            Utility.Tween.LinearScaleOut(this.ScoreHighlightBox.gameObject, new Vector2(0, 1.25f), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
+            Utility.Tween.LinearScaleOut(this.ScoreTitleLabel.gameObject, new Vector2(0, 1), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
+            this.currentGameOverScoreAnimationTime = Utility.Tween.LinearScaleOut(this.ScoreValueLabel.gameObject, new Vector2(0, 1), this.currentGameOverScoreAnimationTime, gameOverAnimationSpeed);
         }
 
         private void ShowGameOverInformation(bool visible)
@@ -130,8 +162,13 @@ namespace UI
                 }
             }
 
-            this.ScoreLabel.gameObject.transform.localScale = new Vector3(this.scoreCurrentScale, this.scoreCurrentScale,
-                this.scoreCurrentScale);
+            this.ScoreLabel.gameObject.transform.localScale = new Vector3(this.scoreCurrentScale, this.scoreCurrentScale, this.scoreCurrentScale);
+        }
+
+        private void OnDestroy()
+        {
+            Player.OnScoreChanged -= this.HandleScoreChanged;
+            Player.OnDeathEnd -= this.HandlePlayerDeath;
         }
 
         #endregion
