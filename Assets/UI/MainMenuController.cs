@@ -36,6 +36,7 @@ namespace UI
             }
 
             this.MuteButton.onClick.AddListener(this.HandleOnMuteButtonClick);
+            this.MuteButton.gameObject.GetComponent<ToggleButton>().SetState(PlayerDataHolder.Instance.Data.MusicEnabled);
         }
 
         private void HandleOnMuteButtonClick()

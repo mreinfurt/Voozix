@@ -630,11 +630,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
+    m_Mode: 4
     m_SelectOnUp: {fileID: 920286246}
     m_SelectOnDown: {fileID: 715058625}
     m_SelectOnLeft: {fileID: 920286246}
-    m_SelectOnRight: {fileID: 715058625}
+    m_SelectOnRight: {fileID: 1959910601}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1268,11 +1268,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
-    m_SelectOnUp: {fileID: 920286246}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1959910601}
     m_SelectOnDown: {fileID: 715058625}
     m_SelectOnLeft: {fileID: 920286246}
-    m_SelectOnRight: {fileID: 715058625}
+    m_SelectOnRight: {fileID: 1959910601}
   m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2379,6 +2379,7 @@ GameObject:
   - 114: {fileID: 1959910602}
   - 114: {fileID: 1959910601}
   - 114: {fileID: 1959910604}
+  - 95: {fileID: 1959910605}
   m_Layer: 5
   m_Name: MuteButton
   m_TagString: Untagged
@@ -2417,12 +2418,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1959910601}
+    m_SelectOnDown: {fileID: 920286246}
+    m_SelectOnLeft: {fileID: 920286246}
+    m_SelectOnRight: {fileID: 1959910601}
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2492,6 +2493,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Off: {fileID: 21300000, guid: 028d91624d0d42349a76cc765ec9e4c4, type: 3}
   On: {fileID: 21300000, guid: ab76a337c43d74245b825e4f30dd9195, type: 3}
+--- !u!95 &1959910605
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1959910599}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ea2170937d5381449a35ee2be508f75, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &2110520116
 Prefab:
   m_ObjectHideFlags: 0

@@ -38,6 +38,14 @@ namespace UI
             this.image.overrideSprite = this.on ? this.On : this.Off;
         }
 
+        public void SetState(bool on)
+        {
+            if (this.on != on)
+            {
+                this.Toggle();
+            }
+        }
+
         #endregion
     }
 }
