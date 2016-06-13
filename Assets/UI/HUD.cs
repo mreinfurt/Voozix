@@ -49,7 +49,7 @@ namespace UI
             switch (SystemInfo.deviceType)
             {
                 case DeviceType.Unknown:
-                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Desktop.TryAgain;
+                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
                     break;
 
                 case DeviceType.Handheld:
@@ -61,11 +61,11 @@ namespace UI
                     break;
 
                 case DeviceType.Desktop:
-                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Desktop.TryAgain;
+                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
                     break;
 
                 default:
-                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Desktop.TryAgain;
+                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
                     break;
             }
 

@@ -18,9 +18,9 @@
         namespace LocalizationKeys
         {
             /// <summary>
-            /// Keyboard
+            /// Base translation class for keyboard environment
             /// </summary>
-            public class Desktop
+            public class Base
             {
                 public static string TryAgain = "Press <color=\"#fffc19\">R</color> to try again";
                 public static string Score = "Score";
@@ -29,19 +29,17 @@
             /// <summary>
             /// Controller
             /// </summary>
-            public class Console
+            public class Console : Base
             {
-                public static string TryAgain = "Press <color=\"#fffc19\">X</color> to try again";
-                public static string Score = "Score";
+                public new static string TryAgain = "Press <color=\"#fffc19\">X</color> to try again";
             }
 
             /// <summary>
             /// Touch-Device
             /// </summary>
-            public class Touch
+            public class Touch : Base
             {
-                public static string TryAgain = "<color=\"#fffc19\">Tap</color> to try again";
-                public static string Score = "Score";
+                public new static string TryAgain = "<color=\"#fffc19\">Tap</color> to try again";
             }
         }
     }
