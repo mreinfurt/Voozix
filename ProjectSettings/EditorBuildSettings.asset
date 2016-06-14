@@ -9,3 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
     path: Assets/Scenes/Survival.unity
+  - enabled: 1
+    path: Assets/Scenes/CampaignSelection.unity
+  - enabled: 1
+    path: Assets/Scenes/C1_L1.unity

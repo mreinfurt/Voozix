@@ -52,6 +52,14 @@ namespace UI
 
         private void HandlePlayCampaignButtonClick()
         {
+            if (NiceSceneTransition.instance != null)
+            {
+                NiceSceneTransition.instance.LoadScene("CampaignSelection");
+            }
+            else
+            {
+                SceneManager.LoadScene("CampaignSelection", LoadSceneMode.Single);
+            }
         }
 
         private void HandlePlaySurvivalButtonClick()
