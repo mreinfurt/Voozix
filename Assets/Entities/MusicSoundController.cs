@@ -25,6 +25,11 @@ namespace Entities
 
         void Update()
         {
+            if (this.audioSource == null)
+            {
+                return;
+            }
+
             this.audioSource.volume = PlayerDataHolder.Instance.Data.MusicEnabled ? this.Volume : 0;
         }
 

@@ -1,12 +1,11 @@
 ﻿#region Namespaces
 
-using System;
 using Data;
 using UnityEngine;
 
 #endregion
 
-namespace Game
+namespace Game.Survival
 {
     public class SurvivalLevelController : MonoBehaviour
     {
@@ -23,7 +22,7 @@ namespace Game
             this.renderer = this.GetComponent<Renderer>();
             this.renderer.material.SetFloat("_StartTime", -int.MaxValue);
 
-            Events.Player.OnDeathBegin += OnDeathBegin;
+            Events.Player.OnDeathBegin += this.OnDeathBegin;
         }
 
         private void OnDeathBegin(PlayerData playerData, Vector2 position)
@@ -49,7 +48,7 @@ namespace Game
 
         private void OnDestroy()
         {
-            Events.Player.OnDeathBegin -= OnDeathBegin;
+            Events.Player.OnDeathBegin -= this.OnDeathBegin;
         }
 
         #endregion

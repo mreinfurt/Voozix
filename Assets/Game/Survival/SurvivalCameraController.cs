@@ -6,7 +6,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Game
+namespace Game.Survival
 {
     public class SurvivalCameraController : MonoBehaviour
     {
