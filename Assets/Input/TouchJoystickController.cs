@@ -16,6 +16,8 @@ namespace Input
 
         #region Fields
 
+        private Color color = new Color(255, 255, 255, 128);
+
         private bool isVisible;
 
         public Sprite Joystick;
@@ -31,8 +33,6 @@ namespace Input
 
         private float x;
         private float y;
-
-		private Color color = new Color(255, 255, 255, 128);
 
         #endregion
 
@@ -67,8 +67,8 @@ namespace Input
 
         void Update()
         {
-			this.joystickRenderer.color = this.isVisible ? this.color : Color.clear;
-			this.joystickAreaRenderer.color = this.isVisible ? this.color : Color.clear;
+            this.joystickRenderer.color = this.isVisible ? this.color : Color.clear;
+            this.joystickAreaRenderer.color = this.isVisible ? this.color : Color.clear;
 
             if (UnityEngine.Input.touchCount <= 0)
             {
@@ -82,8 +82,8 @@ namespace Input
                 case TouchPhase.Began:
                     this.isVisible = true;
                     this.position = touch.position;
-					var worldPosition = Camera.main.ScreenToWorldPoint(this.position);
-					this.joystickAreaGameObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
+                    var worldPosition = Camera.main.ScreenToWorldPoint(this.position);
+                    this.joystickAreaGameObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
                     break;
                 case TouchPhase.Ended:
                     this.isVisible = false;
@@ -98,8 +98,8 @@ namespace Input
                 delta.y *= 1 / delta.magnitude * JoystickOffsetMaximum;
             }
 
-			var joystickWorldPosition = Camera.main.ScreenToWorldPoint(this.position + new Vector2(delta.x, delta.y));
-			this.joystickGameObject.transform.position = new Vector3(joystickWorldPosition.x, joystickWorldPosition.y, 0);
+            var joystickWorldPosition = Camera.main.ScreenToWorldPoint(this.position + new Vector2(delta.x, delta.y));
+            this.joystickGameObject.transform.position = new Vector3(joystickWorldPosition.x, joystickWorldPosition.y, 0);
             this.x = delta.x / JoystickOffsetMaximum;
             this.y = delta.y / JoystickOffsetMaximum;
         }

@@ -14,11 +14,11 @@ namespace UI
     {
         #region Fields
 
+        public Button MuteButton;
+
         public Button PlayCampaignButton;
         public Button PlaySurvivalButton;
         public Button Quit;
-
-        public Button MuteButton;
 
         #endregion
 
@@ -36,7 +36,8 @@ namespace UI
             }
 
             this.MuteButton.onClick.AddListener(this.HandleOnMuteButtonClick);
-            this.MuteButton.gameObject.GetComponent<ToggleButton>().SetState(PlayerDataHolder.Instance.Data.MusicEnabled);
+            this.MuteButton.gameObject.GetComponent<ToggleButton>()
+                .SetState(PlayerDataHolder.Instance.Data.MusicEnabled);
         }
 
         private void HandleOnMuteButtonClick()

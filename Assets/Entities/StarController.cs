@@ -15,10 +15,9 @@ namespace Entities
 
         public GameObject EnemyPrefab;
 
-        public GameObject StarCollectionParticleSystem;
+        [SerializeField] private bool isRespawning = true;
 
-        [SerializeField]
-        private bool isRespawning = true;
+        public GameObject StarCollectionParticleSystem;
 
         #endregion
 

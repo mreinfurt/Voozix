@@ -14,9 +14,9 @@ namespace Data
     {
         #region Fields
 
-        public bool MusicEnabled = true;
-
         public int HighestScore;
+
+        public bool MusicEnabled = true;
 
         private int score;
 

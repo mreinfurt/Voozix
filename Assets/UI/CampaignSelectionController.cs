@@ -14,9 +14,9 @@ namespace UI
     {
         #region Fields
 
-        public Button MuteButton;
-
         public Button BackButton;
+
+        public Button MuteButton;
 
         public Button PlayLevel1Button;
 
