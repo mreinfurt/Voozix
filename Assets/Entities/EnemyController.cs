@@ -21,7 +21,12 @@ namespace Entities
 
         private void Start()
         {
-            this.GetComponent<ClampToScreenBounds>().OnHitScreenBounds += this.ReverseDirection;
+            var clampToScreenBounds = this.GetComponent<ClampToScreenBounds>();
+
+            if (clampToScreenBounds != null)
+            {
+                clampToScreenBounds.OnHitScreenBounds += this.ReverseDirection;
+            }
         }
 
         public void Spawn(Vector2 playerPosition)
