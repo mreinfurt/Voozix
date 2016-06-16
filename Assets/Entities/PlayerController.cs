@@ -20,6 +20,9 @@ namespace Entities
         public float Speed = 5.5f;
         private TouchJoystickController touchController;
 
+        [SerializeField]
+        private Vector2 lastCheckpoint = Vector2.zero;
+
         #endregion
 
         #region Properties
@@ -50,6 +53,7 @@ namespace Entities
         {
             this.Score = 0;
             this.IsAlive = true;
+            this.transform.position = new Vector3(this.lastCheckpoint.x, this.lastCheckpoint.y, this.transform.position.z);
         }
 
         private void Update()

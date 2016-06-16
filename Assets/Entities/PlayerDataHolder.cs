@@ -37,7 +37,7 @@ namespace Entities
         {
             if (Instance == null)
             {
-                DontDestroyOnLoad(this.transform.gameObject);
+                DontDestroyOnLoad(this.gameObject);
                 Instance = this;
                 this.data = PlayerDataSaveController.Load();
             }
