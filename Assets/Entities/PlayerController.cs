@@ -97,6 +97,9 @@ namespace Entities
                     Player.OnDeathBegin(PlayerDataHolder.Instance.Data, this.transform.position);
                     this.HandleDeathBegin();
                     break;
+                case "checkpoint":
+                    this.lastCheckpoint = this.transform.position;
+                    break;
             }
         }
 
