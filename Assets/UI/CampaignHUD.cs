@@ -36,10 +36,7 @@ namespace UI
             }
 
             this.ScoreLabel.text = "" + totalScore;
-            var scorePosition = Camera.main.WorldToScreenPoint(position);
-            // TODO: Move depending on player movement?
-            scorePosition.x -= 25;
-            this.ScoreLabel.gameObject.transform.position = scorePosition;
+            this.ScoreLabel.gameObject.transform.position = position;
             this.ScoreLabel.color = Color.white;
 
             this.scoreCurrentAnimationState = 0;
