@@ -532,6 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyPrefab: {fileID: 139128, guid: c94662392e04345f1a9e4af89986a33e, type: 2}
+  isRespawning: 1
   StarCollectionParticleSystem: {fileID: 33539727}
 --- !u!58 &711080050
 CircleCollider2D:
@@ -972,6 +973,7 @@ GameObject:
   - 81: {fileID: 1236181750}
   - 114: {fileID: 1236181755}
   - 114: {fileID: 1236181756}
+  - 114: {fileID: 1236181757}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1072,6 +1074,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShakeIntensity: 0.025
+--- !u!114 &1236181757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236181749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc47ba02ca15e4b8a825b6cf6b477b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PostEffectMaterial: {fileID: 2100000, guid: ef0f1fc22ab2f0c469ca1c46549c10e2, type: 2}
 --- !u!1 &1297394384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1118,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09b6308d7fae88c46b806a16df3bf0ce, type: 2}
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1393,6 +1407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAlive: 1
   Speed: 3.5
+  lastCheckpoint: {x: 0, y: 0}
 --- !u!58 &1710869667
 CircleCollider2D:
   m_ObjectHideFlags: 0

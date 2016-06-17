@@ -338,8 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d245a8778163d514088aae1b74804a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MuteButton: {fileID: 1479603516}
   BackButton: {fileID: 820275239}
+  MuteButton: {fileID: 1479603516}
   PlayLevel1Button: {fileID: 1131839817}
   PlayLevel2Button: {fileID: 1363570994}
 --- !u!222 &446568994
@@ -501,7 +501,6 @@ GameObject:
   - 82: {fileID: 749205237}
   - 114: {fileID: 749205236}
   - 114: {fileID: 749205235}
-  - 114: {fileID: 749205234}
   - 114: {fileID: 749205233}
   - 114: {fileID: 749205232}
   m_Layer: 0
@@ -534,17 +533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultScale: 1.31
---- !u!114 &749205234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 749205231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82bd2c565917d3641b1b10bd9f004c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &749205235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +639,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09b6308d7fae88c46b806a16df3bf0ce, type: 2}
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

@@ -26,6 +26,7 @@
 			};
 
 			fixed4 _ShockwaveCenter;
+			fixed4 _MainTex_TexelSize;
 			fixed _StartTime;
 
 			struct v2f

@@ -2,7 +2,6 @@
 
 using Data;
 using UnityEngine;
-using UnityEngine.UI;
 
 #endregion
 
@@ -10,7 +9,11 @@ namespace Game
 {
     public class PostEffectsController : MonoBehaviour
     {
+        #region Fields
+
         public Material PostEffectMaterial;
+
+        #endregion
 
         #region Methods
 
@@ -25,6 +28,8 @@ namespace Game
             var screenPosition = Camera.main.WorldToScreenPoint(position);
             var texCoordPosition = new Vector2(screenPosition.x / Screen.width,
                 screenPosition.y / Screen.height);
+
+            texCoordPosition.y = 1 - texCoordPosition.y;
 
             Debug.Log("Shockwave: " + texCoordPosition + "... " + texCoordPosition.x);
 
