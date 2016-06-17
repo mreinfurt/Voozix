@@ -85,9 +85,9 @@ namespace Entities
             this.transform.position += position;
         }
 
-        private void OnCollisionEnter2D(Collision2D collider)
+        private void OnCollisionEnter2D(Collision2D otherCollider)
         {
-            switch (collider.gameObject.tag.ToLower())
+            switch (otherCollider.gameObject.tag.ToLower())
             {
                 case "star":
                     this.Score += 20;
@@ -97,6 +97,13 @@ namespace Entities
                     Player.OnDeathBegin(PlayerDataHolder.Instance.Data, this.transform.position);
                     this.HandleDeathBegin();
                     break;
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D otherCollider)
+        {
+            switch (otherCollider.gameObject.tag.ToLower())
+            {
                 case "checkpoint":
                     this.lastCheckpoint = this.transform.position;
                     break;
