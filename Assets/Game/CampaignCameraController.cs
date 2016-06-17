@@ -15,13 +15,12 @@ namespace Game
         private Vector3 defaultPosition;
 
         public GameObject Player;
+        private float shakeAmount;
 
         /// <summary>
         /// Intensity of the camera shake
         /// </summary>
         public float ShakeIntensity = 0.025f;
-        private float shakeAmount;
-
 
         #endregion
 

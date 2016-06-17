@@ -15,13 +15,13 @@ namespace Entities
         #region Fields
 
         public bool IsAlive = true;
+
+        [SerializeField] private Vector2 lastCheckpoint = Vector2.zero;
+
         private Vector2 movement;
 
         public float Speed = 5.5f;
         private TouchJoystickController touchController;
-
-        [SerializeField]
-        private Vector2 lastCheckpoint = Vector2.zero;
 
         #endregion
 
@@ -53,7 +53,8 @@ namespace Entities
         {
             this.Score = 0;
             this.IsAlive = true;
-            this.transform.position = new Vector3(this.lastCheckpoint.x, this.lastCheckpoint.y, this.transform.position.z);
+            this.transform.position = new Vector3(this.lastCheckpoint.x, this.lastCheckpoint.y,
+                this.transform.position.z);
         }
 
         private void Update()
@@ -106,6 +107,11 @@ namespace Entities
             {
                 case "checkpoint":
                     this.lastCheckpoint = this.transform.position;
+                    break;
+
+                case "goal":
+                    this.lastCheckpoint = this.transform.position;
+                    Player.ReachedGoal(this.transform.position);
                     break;
             }
         }

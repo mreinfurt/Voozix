@@ -40,7 +40,10 @@ namespace Data
             }
         }
 
-        public List<ChapterData> ChapterData { get { return this.chapterData; } }
+        public List<ChapterData> ChapterData
+        {
+            get { return this.chapterData; }
+        }
 
         #endregion
     }
