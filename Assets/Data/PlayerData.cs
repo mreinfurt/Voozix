@@ -1,6 +1,7 @@
 ﻿#region Namespaces
 
 using System;
+using System.Collections.Generic;
 
 #endregion
 
@@ -13,6 +14,8 @@ namespace Data
     public class PlayerData
     {
         #region Fields
+
+        private List<ChapterData> chapterData = new List<ChapterData>();
 
         public int HighestScore;
 
@@ -36,6 +39,8 @@ namespace Data
                 }
             }
         }
+
+        public List<ChapterData> ChapterData { get { return this.chapterData; } }
 
         #endregion
     }

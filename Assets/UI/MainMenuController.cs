@@ -1,5 +1,6 @@
 ﻿#region Namespaces
 
+using System.Linq;
 using Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,13 +54,20 @@ namespace UI
 
         private void HandlePlayCampaignButtonClick()
         {
+            var sceneToLoad = "CampaignSelection";
+
+            if (PlayerDataHolder.Instance.Data.ChapterData.Count(x => x.Finished) == 0)
+            {
+                sceneToLoad = "C1_L1";
+            }
+
             if (NiceSceneTransition.instance != null)
             {
-                NiceSceneTransition.instance.LoadScene("CampaignSelection");
+                NiceSceneTransition.instance.LoadScene(sceneToLoad);
             }
             else
             {
-                SceneManager.LoadScene("CampaignSelection", LoadSceneMode.Single);
+                SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
             }
         }
 
