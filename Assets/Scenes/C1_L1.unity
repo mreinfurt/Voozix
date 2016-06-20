@@ -4657,7 +4657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cc47ba02ca15e4b8a825b6cf6b477b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PostEffect: 0
   PostEffectMaterial: {fileID: 2100000, guid: ef0f1fc22ab2f0c469ca1c46549c10e2, type: 2}
+  BlurMaterial: {fileID: 2100000, guid: 9ea2c81566c85f8489e03e52dc7bf5a7, type: 2}
 --- !u!114 &922630500
 MonoBehaviour:
   m_ObjectHideFlags: 0

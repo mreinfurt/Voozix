@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ShockwaveImageEffectMaterial
-  m_Shader: {fileID: 4800000, guid: d2af97b95cf54664e950508c88f7ba9e, type: 3}
+  m_Name: BlurImageEffectMaterial
+  m_Shader: {fileID: 4800000, guid: 0a66d2a8c4b3d5a4383dac6ea84391f3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
@@ -130,7 +130,7 @@ Material:
       data:
         first:
           name: _StartTime
-        second: -2.1474836e+9
+        second: 0.5
     m_Colors:
       data:
         first:
@@ -143,4 +143,4 @@ Material:
       data:
         first:
           name: _ShockwaveCenter
-        second: {r: 0.4999242, g: 0.5010899, b: 0, a: 0}
+        second: {r: 0.5, g: 0.5, b: 0, a: 0}
