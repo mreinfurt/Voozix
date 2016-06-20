@@ -35,7 +35,12 @@ namespace Events
         /// <summary>
         /// Called when the player reaches the level goal in the campaign mode
         /// </summary>
-        public static Action<Vector2> ReachedGoal = (playerPosition) => { };
+        public static Action<Vector2> OnReachedGoal = (playerPosition) => { };
+
+        /// <summary>
+        /// Called when the player reaches a level checkpoint in the campaign mode
+        /// </summary>
+        public static Action<Vector2> OnReachedCheckpoint = (playerPosition) => { };
 
         #endregion
     }

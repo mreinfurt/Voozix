@@ -24,7 +24,7 @@ namespace Game
 
         private void Start()
         {
-            Events.Player.ReachedGoal += ReachedGoal;
+            Events.Player.OnReachedGoal += ReachedGoal;
         }
 
         private void ReachedGoal(Vector2 playerPosition)

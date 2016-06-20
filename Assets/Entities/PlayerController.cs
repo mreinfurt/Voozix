@@ -113,11 +113,12 @@ namespace Entities
             {
                 case "checkpoint":
                     this.lastCheckpoint = this.transform.position;
+                    Player.OnReachedCheckpoint(this.transform.position);
                     break;
 
                 case "goal":
                     this.lastCheckpoint = this.transform.position;
-                    Player.ReachedGoal(this.transform.position);
+                    Player.OnReachedGoal(this.transform.position);
                     break;
             }
         }
