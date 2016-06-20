@@ -130,7 +130,7 @@ Material:
       data:
         first:
           name: _StartTime
-        second: -2.1474836e+9
+        second: 11.94
     m_Colors:
       data:
         first:
@@ -143,4 +143,4 @@ Material:
       data:
         first:
           name: _ShockwaveCenter
-        second: {r: 0.5002248, g: 0.4995541, b: 0, a: 0}
+        second: {r: 0.4999242, g: 0.5010899, b: 0, a: 0}
