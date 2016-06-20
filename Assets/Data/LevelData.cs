@@ -27,16 +27,19 @@ namespace Data
         public int Score
         {
             get { return this.score; }
+            set { this.score = value; }
         }
 
         public bool Completed
         {
             get { return this.completed; }
+            set { this.completed = value; }
         }
 
         public float CompletionTime
         {
             get { return this.completionTime; }
+            set { this.completionTime = value; }
         }
 
         #endregion

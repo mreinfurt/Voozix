@@ -25,6 +25,7 @@ namespace Data
         public List<LevelData> LevelData
         {
             get { return this.levelData; }
+            set { this.levelData = value; }
         }
 
         /// <summary>

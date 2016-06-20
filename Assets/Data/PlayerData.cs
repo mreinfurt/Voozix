@@ -43,6 +43,7 @@ namespace Data
         public List<ChapterData> ChapterData
         {
             get { return this.chapterData; }
+            set { this.chapterData = value; }
         }
 
         #endregion
