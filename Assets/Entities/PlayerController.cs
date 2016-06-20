@@ -14,6 +14,8 @@ namespace Entities
     {
         #region Fields
 
+        private new Collider2D collider2D;
+
         public bool IsAlive = true;
 
         [SerializeField] private Vector2 lastCheckpoint = Vector2.zero;
@@ -47,6 +49,7 @@ namespace Entities
         {
             Global.OnReset += OnReset;
             this.touchController = this.GetComponent<TouchJoystickController>();
+            this.collider2D = this.GetComponent<Collider2D>();
         }
 
         private void OnReset()
@@ -55,6 +58,9 @@ namespace Entities
             this.IsAlive = true;
             this.transform.position = new Vector3(this.lastCheckpoint.x, this.lastCheckpoint.y,
                 this.transform.position.z);
+
+            this.transform.localScale = Vector3.one;
+            this.collider2D.enabled = true;
         }
 
         private void Update()
@@ -118,9 +124,12 @@ namespace Entities
 
         private void HandleDeathBegin()
         {
+            this.transform.localScale = Vector3.zero;
+            this.collider2D.enabled = false;
+            this.IsAlive = false;
+
             PlayerDataSaveController.Save(PlayerDataHolder.Instance.Data);
             this.GetComponent<AudioSource>().Play();
-            this.IsAlive = false;
 
             Invoke("HandleDeathEnd", 0.3f);
         }
