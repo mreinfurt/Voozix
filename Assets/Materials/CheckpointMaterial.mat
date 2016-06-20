@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: CheckpointMaterial
   m_Shader: {fileID: 4800000, guid: 8ec892f6f6cb79844b31fb614ca25cf1, type: 3}
-  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
+  m_ShaderKeywords: PIXELSNAP_ON _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: 3000
   stringTagMap:
@@ -102,7 +102,7 @@ Material:
       data:
         first:
           name: PixelSnap
-        second: 0
+        second: 1
       data:
         first:
           name: _Parallax
@@ -147,4 +147,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.36551714, g: 1, b: 0, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
