@@ -82,7 +82,14 @@ Material:
         first:
           name: _AlphaTexture
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: d5557cf5c0f76784794f528c9ae40f62, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MainTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: adac8e822159d1f4db8b683ca0d0b307, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:

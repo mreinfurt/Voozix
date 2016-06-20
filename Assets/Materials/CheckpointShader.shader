@@ -5,6 +5,7 @@
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 		_Color("Tint", Color) = (1,1,1,1)
+		_MainTexture("Main Texture", 2D) = "white" {}
 		_AlphaTexture("Alpha Texture", 2D) = "white" {}
 	}
 
@@ -63,6 +64,7 @@
 
 		sampler2D _MainTex;
 		sampler2D _AlphaTexture;
+		sampler2D _MainTexture;
 
 		// Fragment-Shader
 		fixed4 frag(v2f IN) : SV_Target
@@ -71,13 +73,9 @@
 			float timeOffset = time - floor(time);
 			
 			float2 newTexCoord = IN.texcoord;
-			newTexCoord.y += timeOffset;
+			newTexCoord.y += time;
 
-			if (newTexCoord.y >= 1) {
-				newTexCoord.y -= 1;
-			}
-
-			fixed4 c = tex2D(_MainTex, newTexCoord) * IN.color;
+			fixed4 c = tex2D(_MainTexture, newTexCoord) * IN.color;
 			fixed4 a = tex2D(_AlphaTexture, IN.texcoord) * IN.color;
 			c.rgb *= a.a;
 
