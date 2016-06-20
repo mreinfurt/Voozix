@@ -1,6 +1,5 @@
 ﻿#region Namespaces
 
-using System;
 using UnityEngine;
 
 #endregion

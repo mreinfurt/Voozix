@@ -1,5 +1,6 @@
 ﻿#region Namespaces
 
+using System;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,84 +11,39 @@ namespace UI
 {
     public class CampaignHUD : MonoBehaviour
     {
-        #region Fields
+        public Text ScoreText;
+        public Text TimeText;
+        public Text StarText;
+        public CampaignController CampaignController;
 
-        private float scoreCurrentAnimationState;
-        private float scoreCurrentScale;
-        public Text ScoreLabel;
-        private bool showScore;
-
-        #endregion
+        public int TotalStars;
 
         #region Methods
 
-        private void Start()
+        public void Start()
         {
-            Events.Player.OnScoreChanged += this.HandleScoreChanged;
-            this.ScoreLabel.text = string.Empty;
+            this.ScoreText.text = "0";
+            this.TimeText.text = "0";
+            this.StarText.text = "0/" + this.TotalStars;
+
+            Events.Player.OnStarCollected += OnStarCollected;
+            Events.Player.OnScoreChanged += OnScoreChanged;
         }
 
-        private void HandleScoreChanged(int totalScore, int difference, Vector2 position)
+        private void OnScoreChanged(int totalScore, int difference, Vector2 playerPosition)
         {
-            // Only show score gains
-            if (difference <= 0)
-            {
-                return;
-            }
-
-            this.ScoreLabel.text = "" + totalScore;
-            this.ScoreLabel.gameObject.transform.position = position;
-            this.ScoreLabel.color = Color.white;
-
-            this.scoreCurrentAnimationState = 0;
-            this.showScore = true;
+            this.ScoreText.text = totalScore.ToString();
         }
 
-        private void Update()
+        private void OnStarCollected()
         {
-            this.UpdateScore();
-
-            var isResetInput = UnityEngine.Input.GetKeyDown(KeyCode.R);
-
-            if (UnityEngine.Input.touchCount > 0)
-            {
-                isResetInput = isResetInput | UnityEngine.Input.GetTouch(0).phase == TouchPhase.Began;
-            }
-
-            if (isResetInput && GameStateController.GameState != GameState.InGame)
-            {
-                Events.Global.OnReset();
-                // TODO: Show level overview
-            }
+            this.StarText.text = this.CampaignController.Stars + "/" + this.TotalStars;
         }
 
-        private void UpdateScore()
+        public void Update()
         {
-            if (!this.showScore)
-            {
-                return;
-            }
-
-            this.scoreCurrentAnimationState += Time.deltaTime * 5;
-            this.scoreCurrentScale = Mathf.Lerp(0.25f, 1f, this.scoreCurrentAnimationState);
-
-            if (this.scoreCurrentAnimationState >= 1f)
-            {
-                this.ScoreLabel.color = Color.Lerp(Color.white, Color.clear, this.scoreCurrentAnimationState - 1);
-
-                if (this.scoreCurrentAnimationState > 2f)
-                {
-                    this.showScore = false;
-                }
-            }
-
-            this.ScoreLabel.gameObject.transform.localScale = new Vector3(this.scoreCurrentScale, this.scoreCurrentScale,
-                this.scoreCurrentScale);
-        }
-
-        private void OnDestroy()
-        {
-            Events.Player.OnScoreChanged -= this.HandleScoreChanged;
+            var time = new TimeSpan(0, 0, 0, 0, (int)(this.CampaignController.CurrentTime * 1000));
+            this.TimeText.text = time.ToString();
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿#region Namespaces
 
+using System;
 using System.Collections.Generic;
 using Data;
 using Entities;
@@ -16,7 +17,22 @@ namespace Game
         public int Chapter = 1;
 
         private float currentTime = 0;
+        private int starsCollected = 0;
         public int Level = 1;
+
+        #endregion
+
+        #region Properties
+
+        public float CurrentTime
+        {
+            get { return this.currentTime; }
+        }
+
+        public int Stars
+        {
+            get { return this.starsCollected; }
+        }
 
         #endregion
 
@@ -25,6 +41,12 @@ namespace Game
         private void Start()
         {
             Events.Player.OnReachedGoal += ReachedGoal;
+            Events.Player.OnStarCollected += OnStarCollected;
+        }
+
+        private void OnStarCollected()
+        {
+            this.starsCollected += 1;
         }
 
         private void ReachedGoal(Vector2 playerPosition)
@@ -48,6 +70,7 @@ namespace Game
             levelData.Score = data.Score;
             levelData.Completed = true;
             levelData.CompletionTime = this.currentTime;
+            levelData.Stars = this.starsCollected;
 
             PlayerDataSaveController.Save(data);
         }

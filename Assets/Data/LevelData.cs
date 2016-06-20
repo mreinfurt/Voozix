@@ -20,6 +20,8 @@ namespace Data
 
         private int score;
 
+        private int stars;
+
         #endregion
 
         #region Properties
@@ -28,6 +30,12 @@ namespace Data
         {
             get { return this.score; }
             set { this.score = value; }
+        }
+
+        public int Stars
+        {
+            get { return this.stars; }
+            set { this.stars = value; }
         }
 
         public bool Completed
