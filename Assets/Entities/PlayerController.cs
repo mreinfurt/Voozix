@@ -18,6 +18,8 @@ namespace Entities
 
         public bool IsAlive = true;
 
+        public bool IsActive = true;
+
         [SerializeField] private Vector2 lastCheckpoint = Vector2.zero;
 
         private Vector2 movement;
@@ -65,7 +67,7 @@ namespace Entities
 
         private void Update()
         {
-            if (!this.IsAlive)
+            if (!this.IsAlive || !this.IsActive)
             {
                 return;
             }
@@ -118,6 +120,7 @@ namespace Entities
 
                 case "goal":
                     this.lastCheckpoint = this.transform.position;
+                    this.IsActive = false;
                     Player.OnReachedGoal(this.transform.position);
                     break;
             }

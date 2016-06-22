@@ -733,7 +733,6 @@ GameObject:
   - 50: {fileID: 128364851}
   - 114: {fileID: 128364849}
   - 82: {fileID: 128364848}
-  - 114: {fileID: 128364847}
   - 114: {fileID: 128364846}
   m_Layer: 10
   m_Name: Player
@@ -755,20 +754,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Joystick: {fileID: 21300000, guid: 018a6c9b838e65c4fb88c32788c72913, type: 3}
   JoystickArea: {fileID: 21300000, guid: 81f5032bbe2d55c48a2f51d54846060c, type: 3}
---- !u!114 &128364847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 128364845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 5
 --- !u!82 &128364848
 AudioSource:
   m_ObjectHideFlags: 0
@@ -855,6 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAlive: 1
+  IsActive: 1
   lastCheckpoint: {x: -5.75, y: 0.15}
   Speed: 3.5
 --- !u!50 &128364851
@@ -2415,7 +2401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.078431375, g: 0.52156866, b: 0.8, a: 0.74509805}
+  m_Color: {r: 0.38039216, g: 0.05882353, b: 0.05882353, a: 0.74509805}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4704,18 +4690,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9eafb7a5878004aa0a1f94fcefb4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreText: {fileID: 130272632}
-  TimeText: {fileID: 1435016529}
-  StarText: {fileID: 678292425}
   CampaignController: {fileID: 922630500}
   LevelSummaryContainer: {fileID: 643646215}
+  LevelSummaryContinueButton: {fileID: 1034589373}
+  LevelSummaryQuitButton: {fileID: 424376151}
   LevelSummaryScoreText: {fileID: 1447225416}
   LevelSummaryStarText: {fileID: 32887986}
-  LevelSummayTimeText: {fileID: 706005994}
-  LevelSummaryContinueButton: {fileID: 1034589373}
   LevelSummaryTryAgainButton: {fileID: 714352738}
-  LevelSummaryQuitButton: {fileID: 424376151}
+  LevelSummayTimeText: {fileID: 706005994}
   postEffectsController: {fileID: 922630499}
+  ScoreText: {fileID: 130272632}
+  StarText: {fileID: 678292425}
+  TimeText: {fileID: 1435016529}
   TotalStars: 14
 --- !u!222 &943607701
 CanvasRenderer:
@@ -9573,6 +9559,68 @@ Prefab:
     - {fileID: 11457522, guid: c94662392e04345f1a9e4af89986a33e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c94662392e04345f1a9e4af89986a33e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2015725874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2015725877}
+  - 114: {fileID: 2015725876}
+  - 114: {fileID: 2015725875}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2015725875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2015725874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &2015725876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2015725874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
+--- !u!4 &2015725877
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2015725874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1 &2015862575
 GameObject:
   m_ObjectHideFlags: 0
