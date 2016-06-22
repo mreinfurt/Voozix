@@ -1186,6 +1186,7 @@ GameObject:
   - 114: {fileID: 1236181755}
   - 114: {fileID: 1236181756}
   - 114: {fileID: 1236181757}
+  - 114: {fileID: 1236181758}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1300,6 +1301,23 @@ MonoBehaviour:
   PostEffect: 0
   PostEffectMaterial: {fileID: 2100000, guid: ef0f1fc22ab2f0c469ca1c46549c10e2, type: 2}
   BlurMaterial: {fileID: 2100000, guid: 9ea2c81566c85f8489e03e52dc7bf5a7, type: 2}
+--- !u!114 &1236181758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236181749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: 0.08
+  intensity: 0.8
+  blurSize: 1
+  blurIterations: 4
+  blurType: 0
+  fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
 --- !u!1 &1256943778
 GameObject:
   m_ObjectHideFlags: 0
