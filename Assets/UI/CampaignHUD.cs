@@ -53,6 +53,13 @@ namespace UI
             Events.Player.OnReachedGoal += OnReachedGoal;
         }
 
+        private void OnDestroy()
+        {
+            Events.Player.OnStarCollected -= OnStarCollected;
+            Events.Player.OnScoreChanged -= OnScoreChanged;
+            Events.Player.OnReachedGoal -= OnReachedGoal;
+        }
+
         private void HandleOnGoalReachedContinueButtonClick()
         {
             const string sceneToLoad = "C1_L2";

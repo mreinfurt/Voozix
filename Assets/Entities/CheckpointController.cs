@@ -31,6 +31,11 @@ namespace Entities
         {
         }
 
+        private void OnDestroy()
+        {
+            Events.Player.OnReachedCheckpoint -= OnReachedCheckpoint;
+        }
+
         #endregion
     }
 }

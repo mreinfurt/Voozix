@@ -54,6 +54,12 @@ namespace Game
             this.enemies.Add(newEnemy);
         }
 
+        private void OnDestroy()
+        {
+            Events.Player.OnDeathBegin -= this.HandlePlayerDeath;
+            Events.Player.OnStarCollected -= this.HandleStarCollected;
+        }
+
         #endregion
     }
 }

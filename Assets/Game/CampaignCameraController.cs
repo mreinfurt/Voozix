@@ -46,6 +46,12 @@ namespace Game
             this.StopShaking();
         }
 
+        private void OnDestroy()
+        {
+            Events.Player.OnDeathBegin -= this.OnDeathBegin;
+            Events.Player.OnDeathEnd -= this.OnDeathEnd;
+        }
+
         void Update()
         {
             var newPosition = new Vector3(this.Player.transform.position.x, this.Player.transform.position.y,

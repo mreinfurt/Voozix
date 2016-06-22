@@ -80,6 +80,12 @@ namespace Game
             this.currentTime += Time.deltaTime;
         }
 
+        private void OnDestroy()
+        {
+            Events.Player.OnReachedGoal -= ReachedGoal;
+            Events.Player.OnStarCollected -= OnStarCollected;
+        }
+
         #endregion
     }
 }

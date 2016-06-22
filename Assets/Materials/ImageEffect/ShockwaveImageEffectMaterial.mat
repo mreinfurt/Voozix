@@ -143,4 +143,4 @@ Material:
       data:
         first:
           name: _ShockwaveCenter
-        second: {r: 0.49998784, g: 0.5000838, b: 0, a: 0}
+        second: {r: 0.49984074, g: 0.49937445, b: 0, a: 0}

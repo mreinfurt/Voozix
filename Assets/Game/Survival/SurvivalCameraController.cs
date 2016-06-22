@@ -34,6 +34,12 @@ namespace Game.Survival
             this.defaultPosition = this.defaultCamera.transform.position;
         }
 
+        private void OnDestroy()
+        {
+            Player.OnDeathBegin -= this.OnDeathBegin;
+            Player.OnDeathEnd -= this.OnDeathEnd;
+        }
+
         private void OnDeathBegin(PlayerData playerData, Vector2 position)
         {
             this.shakeAmount = this.ShakeIntensity;

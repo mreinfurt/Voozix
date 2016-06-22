@@ -25,6 +25,11 @@ namespace Game
         {
         }
 
+        private void OnDestroy()
+        {
+            Events.Global.OnReset -= OnReset;
+        }
+
         #endregion
     }
 }

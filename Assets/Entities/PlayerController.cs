@@ -50,6 +50,12 @@ namespace Entities
             PlayerDataHolder.Instance.Player = this.gameObject;
         }
 
+        private void OnDestroy()
+        {
+            Events.Global.OnReset -= OnReset;
+            Events.Player.OnFreezeMovement -= OnFreezeMovement;
+        }
+
         private void OnFreezeMovement(bool freeze)
         {
             this.IsActive = !freeze;

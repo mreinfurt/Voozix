@@ -43,7 +43,7 @@ namespace Game
 
             texCoordPosition.y = 1 - texCoordPosition.y;
 
-            Debug.Log("Shockwave: " + texCoordPosition + "... " + texCoordPosition.x);
+            // Debug.Log("Shockwave: " + texCoordPosition + "... " + texCoordPosition.x);
 
             this.PostEffectMaterial.SetFloat("_StartTime", Time.timeSinceLevelLoad);
             this.PostEffectMaterial.SetVector("_ShockwaveCenter", texCoordPosition);
@@ -51,6 +51,11 @@ namespace Game
 
         private void Update()
         {
+        }
+
+        private void OnDestroy()
+        {
+            Events.Player.OnDeathBegin -= this.OnDeathBegin;
         }
 
         void OnRenderImage(RenderTexture src, RenderTexture dest)
