@@ -32,11 +32,15 @@ namespace Data
             get { return this.score; }
             set
             {
+                var difference = value - this.Score;
+
                 this.score = value;
                 if (this.score > this.HighestScore)
                 {
                     this.HighestScore = this.score;
                 }
+
+                Events.Player.OnScoreChanged(this.Score, difference);
             }
         }
 

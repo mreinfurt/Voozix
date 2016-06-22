@@ -1,8 +1,6 @@
 ﻿#region Namespaces
 
-using System;
 using Data;
-using Events;
 using Input;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -17,9 +15,9 @@ namespace Entities
 
         private new Collider2D collider2D;
 
-        public bool IsAlive = true;
-
         public bool IsActive = true;
+
+        public bool IsAlive = true;
 
         [SerializeField] private Vector2 lastCheckpoint = Vector2.zero;
 
@@ -35,13 +33,7 @@ namespace Entities
         public int Score
         {
             get { return PlayerDataHolder.Instance.Data.Score; }
-            private set
-            {
-                var difference = value - PlayerDataHolder.Instance.Data.Score;
-                PlayerDataHolder.Instance.Data.Score = value;
-
-                Player.OnScoreChanged(PlayerDataHolder.Instance.Data.Score, difference, this.transform.position);
-            }
+            private set { PlayerDataHolder.Instance.Data.Score = value; }
         }
 
         #endregion
@@ -50,11 +42,12 @@ namespace Entities
 
         private void Start()
         {
-            Global.OnReset += OnReset;
+            Events.Global.OnReset += OnReset;
             this.touchController = this.GetComponent<TouchJoystickController>();
             this.collider2D = this.GetComponent<Collider2D>();
 
             Events.Player.OnFreezeMovement += OnFreezeMovement;
+            PlayerDataHolder.Instance.Player = this.gameObject;
         }
 
         private void OnFreezeMovement(bool freeze)
@@ -64,7 +57,6 @@ namespace Entities
 
         private void OnReset()
         {
-            this.Score = 0;
             this.IsAlive = true;
             this.transform.position = new Vector3(this.lastCheckpoint.x, this.lastCheckpoint.y,
                 this.transform.position.z);
@@ -108,10 +100,10 @@ namespace Entities
             {
                 case "star":
                     this.Score += 20;
-                    Player.OnStarCollected();
+                    Events.Player.OnStarCollected();
                     break;
                 case "enemy":
-                    Player.OnDeathBegin(PlayerDataHolder.Instance.Data, this.transform.position);
+                    Events.Player.OnDeathBegin(PlayerDataHolder.Instance.Data, this.transform.position);
                     this.HandleDeathBegin();
                     break;
             }
@@ -123,13 +115,13 @@ namespace Entities
             {
                 case "checkpoint":
                     this.lastCheckpoint = this.transform.position;
-                    Player.OnReachedCheckpoint(this.transform.position);
+                    Events.Player.OnReachedCheckpoint(this.transform.position);
                     break;
 
                 case "goal":
                     this.lastCheckpoint = this.transform.position;
                     this.IsActive = false;
-                    Player.OnReachedGoal(this.transform.position);
+                    Events.Player.OnReachedGoal(this.transform.position);
                     break;
             }
         }
@@ -149,7 +141,7 @@ namespace Entities
         [UsedImplicitly]
         private void HandleDeathEnd()
         {
-            Player.OnDeathEnd(PlayerDataHolder.Instance.Data, this.transform.position);
+            Events.Player.OnDeathEnd(PlayerDataHolder.Instance.Data, this.transform.position);
         }
 
         #endregion

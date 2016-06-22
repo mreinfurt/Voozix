@@ -19,6 +19,8 @@ namespace Entities
 
         private PlayerData data = new PlayerData();
 
+        public GameObject Player;
+
         #endregion
 
         #region Properties

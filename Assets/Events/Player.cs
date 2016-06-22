@@ -30,7 +30,7 @@ namespace Events
         /// <summary>
         /// Called when the score of the player changes
         /// </summary>
-        public static Action<int, int, Vector2> OnScoreChanged = (totalScore, difference, playerPosition) => { };
+        public static Action<int, int> OnScoreChanged = (totalScore, difference) => { };
 
         /// <summary>
         /// Called when the player reaches the level goal in the campaign mode

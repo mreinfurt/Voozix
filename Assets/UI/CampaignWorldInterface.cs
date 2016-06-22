@@ -1,5 +1,6 @@
 ﻿#region Namespaces
 
+using Entities;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,7 +28,7 @@ namespace UI
             this.ScoreLabel.text = string.Empty;
         }
 
-        private void HandleScoreChanged(int totalScore, int difference, Vector2 position)
+        private void HandleScoreChanged(int totalScore, int difference)
         {
             // Only show score gains
             if (difference <= 0)
@@ -36,7 +37,7 @@ namespace UI
             }
 
             this.ScoreLabel.text = "" + totalScore;
-            this.ScoreLabel.gameObject.transform.position = position;
+            this.ScoreLabel.gameObject.transform.position = PlayerDataHolder.Instance.Player.transform.position;
             this.ScoreLabel.color = Color.white;
 
             this.scoreCurrentAnimationState = 0;

@@ -1,6 +1,7 @@
 ﻿#region Namespaces
 
 using Data;
+using Entities;
 using Events;
 using Game;
 using UnityEngine;
@@ -81,7 +82,7 @@ namespace UI
             this.ShowGameOverInformation(true);
         }
 
-        private void HandleScoreChanged(int totalScore, int difference, Vector2 position)
+        private void HandleScoreChanged(int totalScore, int difference)
         {
             this.InfoLabel.text = "Score: " + totalScore;
 
@@ -92,7 +93,7 @@ namespace UI
             }
 
             this.ScoreLabel.text = "" + totalScore;
-            this.ScoreLabel.gameObject.transform.position = Camera.main.WorldToScreenPoint(position);
+            this.ScoreLabel.gameObject.transform.position = Camera.main.WorldToScreenPoint(PlayerDataHolder.Instance.Player.transform.position);
             this.ScoreLabel.color = Color.white;
 
             this.scoreCurrentAnimationState = 0;

@@ -140,7 +140,7 @@ namespace UI
             this.CloseLevelSummary();
         }
 
-        private void OnScoreChanged(int totalScore, int difference, Vector2 playerPosition)
+        private void OnScoreChanged(int totalScore, int difference)
         {
             this.ScoreText.text = totalScore.ToString();
         }

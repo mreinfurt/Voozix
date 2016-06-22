@@ -1085,7 +1085,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cc47ba02ca15e4b8a825b6cf6b477b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PostEffect: 0
   PostEffectMaterial: {fileID: 2100000, guid: ef0f1fc22ab2f0c469ca1c46549c10e2, type: 2}
+  BlurMaterial: {fileID: 0}
 --- !u!1 &1297394384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,9 +1100,9 @@ GameObject:
   - 82: {fileID: 1297394387}
   - 114: {fileID: 1297394389}
   - 114: {fileID: 1297394388}
-  - 114: {fileID: 1297394390}
   - 114: {fileID: 1297394391}
   - 114: {fileID: 1297394392}
+  - 114: {fileID: 1297394390}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -1255,7 +1257,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1297394384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82bd2c565917d3641b1b10bd9f004c58, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d025ba43b1de3c489523a6785710498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1297394391
@@ -1406,8 +1408,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAlive: 1
-  Speed: 3.5
+  IsActive: 1
   lastCheckpoint: {x: 0, y: 0}
+  Speed: 3.5
 --- !u!58 &1710869667
 CircleCollider2D:
   m_ObjectHideFlags: 0
