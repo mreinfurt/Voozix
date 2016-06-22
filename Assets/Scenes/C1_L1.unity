@@ -4708,6 +4708,14 @@ MonoBehaviour:
   TimeText: {fileID: 1435016529}
   StarText: {fileID: 678292425}
   CampaignController: {fileID: 922630500}
+  LevelSummaryContainer: {fileID: 643646215}
+  LevelSummaryScoreText: {fileID: 1447225416}
+  LevelSummaryStarText: {fileID: 32887986}
+  LevelSummayTimeText: {fileID: 706005994}
+  LevelSummaryContinueButton: {fileID: 1034589373}
+  LevelSummaryTryAgainButton: {fileID: 714352738}
+  LevelSummaryQuitButton: {fileID: 424376151}
+  postEffectsController: {fileID: 922630499}
   TotalStars: 14
 --- !u!222 &943607701
 CanvasRenderer:

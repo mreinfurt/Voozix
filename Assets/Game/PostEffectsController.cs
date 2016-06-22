@@ -55,15 +55,30 @@ namespace Game
 
         void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
-            this.PostEffect = PostEffect.Blur;
-
             switch (PostEffect)
             {
                 case PostEffect.Shockwave:
                     Graphics.Blit(src, dest, this.PostEffectMaterial);
                     break;
                 case PostEffect.Blur:
-                    Graphics.Blit(src, dest, this.BlurMaterial);
+
+                    int downsample = 3;
+                    int width = src.width >> downsample;
+                    int height = src.height >> downsample;
+
+                    RenderTexture rt = RenderTexture.GetTemporary(width, height);
+                    Graphics.Blit(src, rt);
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        RenderTexture rt2 = RenderTexture.GetTemporary(width, height);
+                        Graphics.Blit(rt, rt2, this.BlurMaterial);
+                        RenderTexture.ReleaseTemporary(rt);
+                        rt = rt2;
+                    }
+
+                    Graphics.Blit(rt, dest, this.BlurMaterial);
+                    RenderTexture.ReleaseTemporary(rt);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
