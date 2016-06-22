@@ -3,9 +3,10 @@
 using Data;
 using Entities;
 using Events;
-using Game;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility;
 
 #endregion
 
@@ -18,14 +19,13 @@ namespace UI
     {
         #region Fields
 
-        private float currentGameOverAnimationTime = 0;
+        public GameObject ButtonContainer;
+        public Button ContinueButton;
+
         private float currentGameOverScoreAnimationTime = 0;
-
-        // Game Over
-        public Text GameOverLabel;
         public Text InfoLabel;
+        public Button QuitButton;
 
-        // Ingame
         private float scoreCurrentAnimationState;
         private float scoreCurrentScale;
         public SpriteRenderer ScoreHighlightBox;
@@ -44,34 +44,26 @@ namespace UI
             Player.OnDeathEnd += this.HandlePlayerDeath;
 
             this.ScoreLabel.text = string.Empty;
+            this.ContinueButton.onClick.AddListener(HandleOnContinueButtonClick);
+            this.QuitButton.onClick.AddListener(HandleOnQuitButtonClick);
+        }
 
-            switch (SystemInfo.deviceType)
+        private void HandleOnContinueButtonClick()
+        {
+            Global.OnReset();
+            this.ShowGameOverInformation(false);
+        }
+
+        private void HandleOnQuitButtonClick()
+        {
+            const string sceneToLoad = "MainMenu";
+            if (NiceSceneTransition.instance != null)
             {
-                case DeviceType.Unknown:
-                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
-                    break;
-
-                case DeviceType.Handheld:
-                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Touch.TryAgain;
-                    break;
-
-                case DeviceType.Console:
-                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Console.TryAgain;
-                    break;
-
-                case DeviceType.Desktop:
-                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
-                    break;
-
-                default:
-                    this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
-                    break;
+                NiceSceneTransition.instance.LoadScene(sceneToLoad);
             }
-
-            if (UnityEngine.Input.GetJoystickNames().Length > 0 &&
-                !string.IsNullOrEmpty(UnityEngine.Input.GetJoystickNames()[0]))
+            else
             {
-                this.GameOverLabel.text = Game.Definitions.LocalizationKeys.Console.TryAgain;
+                SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
             }
         }
 
@@ -93,7 +85,8 @@ namespace UI
             }
 
             this.ScoreLabel.text = "" + totalScore;
-            this.ScoreLabel.gameObject.transform.position = Camera.main.WorldToScreenPoint(PlayerDataHolder.Instance.Player.transform.position);
+            this.ScoreLabel.gameObject.transform.position =
+                Camera.main.WorldToScreenPoint(PlayerDataHolder.Instance.Player.transform.position);
             this.ScoreLabel.color = Color.white;
 
             this.scoreCurrentAnimationState = 0;
@@ -104,28 +97,11 @@ namespace UI
         {
             this.UpdateScore();
             this.UpdateGameOver();
-
-            var isResetInput = UnityEngine.Input.GetKeyDown(KeyCode.R);
-
-            if (UnityEngine.Input.touchCount > 0)
-            {
-                isResetInput = isResetInput | UnityEngine.Input.GetTouch(0).phase == TouchPhase.Began;
-            }
-
-            if (isResetInput && GameStateController.GameState != GameState.InGame)
-            {
-                Global.OnReset();
-                this.ShowGameOverInformation(false);
-            }
         }
 
         private void UpdateGameOver()
         {
-            this.currentGameOverAnimationTime += Time.deltaTime;
             this.currentGameOverScoreAnimationTime += Time.deltaTime;
-
-            this.currentGameOverAnimationTime = Utility.Tween.LinearScaleInOut(this.GameOverLabel.gameObject,
-                new Vector2(0.8f, 1f), this.currentGameOverAnimationTime);
 
             var gameOverAnimationSpeed = 3f;
 
@@ -141,10 +117,15 @@ namespace UI
         {
             this.currentGameOverScoreAnimationTime = 0;
             this.UpdateGameOver();
-            this.GameOverLabel.enabled = visible;
             this.ScoreTitleLabel.enabled = visible;
             this.ScoreValueLabel.enabled = visible;
             this.ScoreHighlightBox.enabled = visible;
+            this.ButtonContainer.SetActive(visible);
+
+            if (visible)
+            {
+                this.ContinueButton.Select();
+            }
         }
 
         private void UpdateScore()

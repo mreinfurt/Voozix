@@ -1,6 +1,5 @@
 ﻿#region Namespaces
 
-using System;
 using Entities;
 using UnityEngine;
 
@@ -24,7 +23,6 @@ namespace Game
 
         private void Update()
         {
-
         }
 
         #endregion
