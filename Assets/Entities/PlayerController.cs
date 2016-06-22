@@ -1,5 +1,6 @@
 ﻿#region Namespaces
 
+using System;
 using Data;
 using Events;
 using Input;
@@ -52,6 +53,13 @@ namespace Entities
             Global.OnReset += OnReset;
             this.touchController = this.GetComponent<TouchJoystickController>();
             this.collider2D = this.GetComponent<Collider2D>();
+
+            Events.Player.OnFreezeMovement += OnFreezeMovement;
+        }
+
+        private void OnFreezeMovement(bool freeze)
+        {
+            this.IsActive = !freeze;
         }
 
         private void OnReset()
