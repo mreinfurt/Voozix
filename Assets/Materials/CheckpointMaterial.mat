@@ -146,6 +146,10 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _Activated
+        second: 0
     m_Colors:
       data:
         first:

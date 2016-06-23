@@ -7,6 +7,7 @@
 		_Color("Tint", Color) = (1,1,1,1)
 		_MainTexture("Main Texture", 2D) = "white" {}
 		_AlphaTexture("Alpha Texture", 2D) = "white" {}
+		_Activated("Activated", Float) = 0
 	}
 
 		SubShader
@@ -65,6 +66,7 @@
 		sampler2D _MainTex;
 		sampler2D _AlphaTexture;
 		sampler2D _MainTexture;
+		float _Activated;
 
 		// Fragment-Shader
 		fixed4 frag(v2f IN) : SV_Target
@@ -78,6 +80,16 @@
 			fixed4 c = tex2D(_MainTexture, newTexCoord) * IN.color;
 			fixed4 a = tex2D(_AlphaTexture, IN.texcoord) * IN.color;
 			c.rgb *= a.a;
+
+			if (_Activated < 1) {
+				float p = sqrt((c.r) *(c.r) * 0.299 + (c.g)*(c.g)* 0.587 + (c.b)*(c.b)* 0.114);
+
+				float saturation = 0;
+
+				c.r = p + ((c.r) - p) * saturation;
+				c.g = p + ((c.g) - p) * saturation;
+				c.b = p + ((c.b) - p) * saturation;
+			}
 
 			return c;
 		}
