@@ -67,8 +67,6 @@ namespace Entities
 
         private void Update()
         {
-            this.HandleMovement();
-
             if (this.transform.localScale.x < 1)
             {
                 var warpSpeed = 0.025f;
@@ -84,6 +82,11 @@ namespace Entities
             }
         }
 
+        private void FixedUpdate()
+        {
+            this.HandleMovement();
+        }
+
         private void HandleMovement()
         {
             var position = new Vector3(this.Speed * this.Movement.x * Time.deltaTime,
@@ -94,7 +97,7 @@ namespace Entities
         private void OnCollisionEnter2D(Collision2D collider)
         {
             var colliderTag = collider.gameObject.tag.ToLower();
-            if (colliderTag == "star" || colliderTag == "enemy")
+            if (colliderTag == "star" || colliderTag == "enemy" || colliderTag == "player")
             {
                 return;
             }

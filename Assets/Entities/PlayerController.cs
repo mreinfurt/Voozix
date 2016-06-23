@@ -75,6 +75,10 @@ namespace Entities
 
         private void Update()
         {
+        }
+
+        private void FixedUpdate()
+        {
             if (!this.IsAlive || !this.IsActive)
             {
                 return;
