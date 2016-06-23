@@ -47,19 +47,6 @@ namespace UI
         private void Update()
         {
             this.UpdateScore();
-
-            var isResetInput = UnityEngine.Input.GetKeyDown(KeyCode.R);
-
-            if (UnityEngine.Input.touchCount > 0)
-            {
-                isResetInput = isResetInput | UnityEngine.Input.GetTouch(0).phase == TouchPhase.Began;
-            }
-
-            if (isResetInput && GameStateController.GameState != GameState.InGame)
-            {
-                Events.Global.OnReset();
-                // TODO: Show level overview
-            }
         }
 
         private void UpdateScore()

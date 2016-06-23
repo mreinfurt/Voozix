@@ -1,6 +1,7 @@
 ﻿#region Namespaces
 
 using System;
+using Data;
 using Entities;
 using Game;
 using UnityEngine;
@@ -17,8 +18,11 @@ namespace UI
         #region Fields
 
         public CampaignController CampaignController;
+        private float currentDeathHintAnimationTime = 0;
+        public Text DeathHintText;
 
         private bool goalReached = false;
+        private bool LevelSummaryOpened = false;
 
         public GameObject LevelSummaryContainer;
 
@@ -51,6 +55,32 @@ namespace UI
             Events.Player.OnStarCollected += OnStarCollected;
             Events.Player.OnScoreChanged += OnScoreChanged;
             Events.Player.OnReachedGoal += OnReachedGoal;
+            Events.Player.OnDeathEnd += OnDeathEnd;
+
+            switch (SystemInfo.deviceType)
+            {
+                case DeviceType.Unknown:
+                    this.DeathHintText.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
+                    break;
+                case DeviceType.Handheld:
+                    this.DeathHintText.text = Game.Definitions.LocalizationKeys.Touch.TryAgain;
+                    break;
+                case DeviceType.Console:
+                    this.DeathHintText.text = Game.Definitions.LocalizationKeys.Console.TryAgain;
+                    break;
+                case DeviceType.Desktop:
+                    this.DeathHintText.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
+                    break;
+                default:
+                    this.DeathHintText.text = Game.Definitions.LocalizationKeys.Base.TryAgain;
+                    break;
+            }
+
+            if (UnityEngine.Input.GetJoystickNames().Length > 0 &&
+                !string.IsNullOrEmpty(UnityEngine.Input.GetJoystickNames()[0]))
+            {
+                this.DeathHintText.text = Game.Definitions.LocalizationKeys.Console.TryAgain;
+            }
         }
 
         private void OnDestroy()
@@ -58,6 +88,12 @@ namespace UI
             Events.Player.OnStarCollected -= OnStarCollected;
             Events.Player.OnScoreChanged -= OnScoreChanged;
             Events.Player.OnReachedGoal -= OnReachedGoal;
+            Events.Player.OnDeathEnd -= OnDeathEnd;
+        }
+
+        private void OnDeathEnd(PlayerData playerData, Vector2 vector2)
+        {
+            this.DeathHintText.enabled = true;
         }
 
         private void HandleOnGoalReachedContinueButtonClick()
@@ -139,6 +175,7 @@ namespace UI
         {
             this.postEffectsController.PostEffect = PostEffect.Shockwave;
             this.LevelSummaryContainer.SetActive(false);
+            this.LevelSummaryOpened = false;
             Events.Player.OnFreezeMovement(false);
         }
 
@@ -161,15 +198,36 @@ namespace UI
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Escape) || UnityEngine.Input.GetButtonDown("Escape"))
             {
-                Events.Player.OnFreezeMovement(true);
-                this.OpenLevelSummary();
+                if (this.LevelSummaryOpened)
+                {
+                    this.CloseLevelSummary();
+                }
+                else
+                {
+                    this.LevelSummaryOpened = true;
+                    Events.Player.OnFreezeMovement(true);
+                    this.OpenLevelSummary();
+                }
             }
 
+            var isResetInput = UnityEngine.Input.GetKeyDown(KeyCode.R) || UnityEngine.Input.GetButtonDown("Restart");
+
+            if (UnityEngine.Input.touchCount > 0)
+            {
+                isResetInput = isResetInput | UnityEngine.Input.GetTouch(0).phase == TouchPhase.Began;
+            }
+
+            if (isResetInput && GameStateController.GameState != GameState.InGame)
+            {
+                Events.Global.OnReset();
+                this.DeathHintText.enabled = false;
+            }
+
+            this.currentDeathHintAnimationTime += Time.deltaTime;
+            this.currentDeathHintAnimationTime = Utility.Tween.LinearScaleInOut(this.DeathHintText.gameObject, new Vector2(0.8f, 1f), this.currentDeathHintAnimationTime);
+
             var time = new TimeSpan(0, 0, 0, 0, (int) (this.CampaignController.CurrentTime * 1000));
-            this.TimeText.text = string.Format("{0:00}:{1:00}:{2:00}",
-                (int) time.TotalHours,
-                time.Minutes,
-                time.Seconds);
+            this.TimeText.text = string.Format("{0:00}:{1:00}:{2:00}", (int) time.TotalHours, time.Minutes, time.Seconds);
         }
 
         #endregion
