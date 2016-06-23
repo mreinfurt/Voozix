@@ -1,6 +1,7 @@
 ﻿#region Namespaces
 
 using System.Collections;
+using Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -90,6 +91,7 @@ namespace Utility
                 this.time += Time.deltaTime * (1.0f / this.transitionTime);
                 yield return null;
             }
+
             SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             this.StartCoroutine(this.StartScene());
         }

@@ -43,10 +43,12 @@ namespace Entities
         private void Start()
         {
             Events.Global.OnReset += OnReset;
+            Events.Player.OnFreezeMovement += OnFreezeMovement;
+
             this.touchController = this.GetComponent<TouchJoystickController>();
             this.collider2D = this.GetComponent<Collider2D>();
 
-            Events.Player.OnFreezeMovement += OnFreezeMovement;
+            PlayerDataHolder.Instance.Data.Score = 0;
             PlayerDataHolder.Instance.Player = this.gameObject;
         }
 
