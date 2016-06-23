@@ -7938,10 +7938,8 @@ GameObject:
   - 4: {fileID: 1236113198}
   - 212: {fileID: 1236113197}
   - 82: {fileID: 1236113196}
-  - 114: {fileID: 1236113195}
   - 114: {fileID: 1236113194}
   - 114: {fileID: 1236113191}
-  - 114: {fileID: 1236113199}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -7970,17 +7968,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ba8523897aa224408e52068619a403b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1236113195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1236113190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841a328284d6cca4c8ce746c1f584e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &1236113196
@@ -8100,18 +8087,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &1236113199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1236113190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49662ed4b7be634c964d82e8ddd494f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
 --- !u!1 &1238234690
 GameObject:
   m_ObjectHideFlags: 0

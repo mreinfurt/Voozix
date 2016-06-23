@@ -1,6 +1,7 @@
 ﻿#region Namespaces
 
 using System.Linq;
+using Data;
 using Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -45,6 +46,8 @@ namespace UI
         {
             PlayerDataHolder.Instance.Data.MusicEnabled = !PlayerDataHolder.Instance.Data.MusicEnabled;
             this.MuteButton.gameObject.GetComponent<ToggleButton>().Toggle();
+
+            PlayerDataSaveController.Save(PlayerDataHolder.Instance.Data);
         }
 
         private void HandleQuitButtonClick()
