@@ -742,8 +742,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BackButton: {fileID: 820275239}
   MuteButton: {fileID: 1479603516}
-  PlayLevel1Button: {fileID: 1131839817}
-  PlayLevel2Button: {fileID: 1363570994}
+  Level1Button: {fileID: 1131839817}
+  Level2Button: {fileID: 1363570994}
+  Level3Button: {fileID: 894178884}
+  Level4Button: {fileID: 1576563679}
+  PlayButton: {fileID: 1500127062}
+  LevelDescriptionText: {fileID: 49104539}
+  ScoreText: {fileID: 2138206872}
+  StarsText: {fileID: 302774841}
+  TimeText: {fileID: 1669822145}
+  LevelUnlockImages:
+  - {fileID: 1127389400}
+  - {fileID: 1816236328}
+  - {fileID: 951202290}
+  Chapter: 0
 --- !u!222 &446568994
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1382,6 +1394,7 @@ GameObject:
   - 114: {fileID: 894178885}
   - 114: {fileID: 894178884}
   - 95: {fileID: 894178883}
+  - 114: {fileID: 894178887}
   m_Layer: 5
   m_Name: Level3Button
   m_TagString: Untagged
@@ -1439,7 +1452,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 1479603516}
-    m_SelectOnDown: {fileID: 894178884}
+    m_SelectOnDown: {fileID: 1500127062}
     m_SelectOnLeft: {fileID: 1131839817}
     m_SelectOnRight: {fileID: 1479603516}
   m_Transition: 3
@@ -1499,6 +1512,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 894178881}
+--- !u!114 &894178887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 894178881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b27cb0bda2808a4794571c81d889dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 3
+  campaignSelectionController: {fileID: 446568993}
 --- !u!1 &951202288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,7 +1640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.078431375, g: 0.52156866, b: 0.8, a: 0.74509805}
+  m_Color: {r: 0.2901961, g: 0.2901961, b: 0.2901961, a: 0.74509805}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1647,6 +1673,7 @@ GameObject:
   - 114: {fileID: 1131839818}
   - 114: {fileID: 1131839817}
   - 95: {fileID: 1131839816}
+  - 114: {fileID: 1131839820}
   m_Layer: 5
   m_Name: Level1Button
   m_TagString: Untagged
@@ -1704,7 +1731,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 820275239}
-    m_SelectOnDown: {fileID: 1363570994}
+    m_SelectOnDown: {fileID: 1500127062}
     m_SelectOnLeft: {fileID: 820275239}
     m_SelectOnRight: {fileID: 1363570994}
   m_Transition: 3
@@ -1764,6 +1791,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1131839814}
+--- !u!114 &1131839820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131839814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b27cb0bda2808a4794571c81d889dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  campaignSelectionController: {fileID: 446568993}
 --- !u!1 &1167523659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,6 +1925,7 @@ GameObject:
   - 114: {fileID: 1363570995}
   - 114: {fileID: 1363570994}
   - 95: {fileID: 1363570993}
+  - 114: {fileID: 1363570997}
   m_Layer: 5
   m_Name: Level2Button
   m_TagString: Untagged
@@ -1942,7 +1983,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 1479603516}
-    m_SelectOnDown: {fileID: 1363570994}
+    m_SelectOnDown: {fileID: 1500127062}
     m_SelectOnLeft: {fileID: 1131839817}
     m_SelectOnRight: {fileID: 1479603516}
   m_Transition: 3
@@ -2002,6 +2043,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1363570991}
+--- !u!114 &1363570997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1363570991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b27cb0bda2808a4794571c81d889dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2
+  campaignSelectionController: {fileID: 446568993}
 --- !u!1 &1411315759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +2414,7 @@ GameObject:
   - 114: {fileID: 1576563680}
   - 114: {fileID: 1576563679}
   - 95: {fileID: 1576563678}
+  - 114: {fileID: 1576563682}
   m_Layer: 5
   m_Name: Level4Button
   m_TagString: Untagged
@@ -2417,7 +2472,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 1479603516}
-    m_SelectOnDown: {fileID: 1576563679}
+    m_SelectOnDown: {fileID: 1500127062}
     m_SelectOnLeft: {fileID: 1131839817}
     m_SelectOnRight: {fileID: 1479603516}
   m_Transition: 3
@@ -2477,6 +2532,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1576563676}
+--- !u!114 &1576563682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1576563676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b27cb0bda2808a4794571c81d889dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 4
+  campaignSelectionController: {fileID: 446568993}
 --- !u!1 &1591206988
 GameObject:
   m_ObjectHideFlags: 0

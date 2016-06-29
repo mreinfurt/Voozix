@@ -1,10 +1,13 @@
 ﻿#region Namespaces
 
+using System;
+using System.Collections.Generic;
 using Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utility;
+using Input = UnityEngine.Input;
 
 #endregion
 
@@ -18,9 +21,30 @@ namespace UI
 
         public Button MuteButton;
 
-        public Button PlayLevel1Button;
+        public Button Level1Button;
 
-        public Button PlayLevel2Button;
+        public Button Level2Button;
+
+        public Button Level3Button;
+
+        public Button Level4Button;
+
+        public Button PlayButton;
+
+        public Text LevelDescriptionText;
+
+        public Text ScoreText;
+
+        public Text StarsText;
+
+        public Text TimeText;
+
+        [SerializeField]
+        private List<Image> LevelUnlockImages;
+
+        public int Chapter;
+
+        private int currentlySelectedLevel;
 
         #endregion
 
@@ -28,18 +52,37 @@ namespace UI
 
         private void Start()
         {
-            this.PlayLevel1Button.onClick.AddListener(() => this.PlayLevel(1));
-            this.PlayLevel2Button.onClick.AddListener(() => this.PlayLevel(2));
+            this.Level1Button.onClick.AddListener(() => this.SelectLevel(1));
+            this.Level2Button.onClick.AddListener(() => this.SelectLevel(2));
+            this.Level3Button.onClick.AddListener(() => this.SelectLevel(3));
+            this.Level4Button.onClick.AddListener(() => this.SelectLevel(4));
 
             if (SystemInfo.deviceType != DeviceType.Handheld)
             {
-                this.PlayLevel1Button.Select();
+                this.Level1Button.Select();
             }
 
             this.BackButton.onClick.AddListener(this.HandleOnBackButtonClick);
             this.MuteButton.onClick.AddListener(this.HandleOnMuteButtonClick);
             this.MuteButton.gameObject.GetComponent<ToggleButton>()
                 .SetState(PlayerDataHolder.Instance.Data.MusicEnabled);
+
+            // Level unlock images
+            var chapter = PlayerDataHolder.Instance.Data.ChapterData[this.Chapter];
+            var currentLevel = 0;
+            foreach (var level in chapter.LevelData)
+            {
+                if (level.Completed)
+                {
+                    this.LevelUnlockImages[currentLevel].color = new Color(r: 0.078f, g: 0.521f, b: 0.8f, a: 0.745f);
+                }
+                else
+                {
+                    this.LevelUnlockImages[currentLevel].color = new Color(r: 0.29f, g: 0.29f, b: 0.29f, a: 0.745f);
+                }
+
+                currentLevel++;
+            }
         }
 
         private void HandleOnBackButtonClick()
@@ -52,6 +95,33 @@ namespace UI
             else
             {
                 SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+            }
+        }
+
+        public void SelectLevel(int level)
+        {
+            this.PlayButton.onClick.RemoveAllListeners();
+            this.PlayButton.onClick.AddListener(() => { this.PlayLevel(level);});
+            this.PlayButton.Select();
+
+            this.currentlySelectedLevel = level;
+            this.LevelDescriptionText.text = "Level " + level;
+
+            if (PlayerDataHolder.Instance.Data.ChapterData.Count >= level)
+            {
+                var levelData = PlayerDataHolder.Instance.Data.ChapterData[this.Chapter].LevelData[level - 1];
+                var time = new TimeSpan(0, 0, 0, 0, (int) (levelData.CompletionTime * 1000));
+
+                this.ScoreText.text = "" + levelData.Score;
+                this.TimeText.text = string.Format("{0:00}:{1:00}:{2:00}", (int) time.TotalHours, time.Minutes,
+                    time.Seconds);
+                this.StarsText.text = levelData.Stars + "/" + "?";
+            }
+            else
+            {
+                this.ScoreText.text = "0";
+                this.TimeText.text = "-:--";
+                this.StarsText.text = "0/?";
             }
         }
 
@@ -77,6 +147,10 @@ namespace UI
 
         private void Update()
         {
+            if ( UnityEngine.Input.GetButtonDown("Escape"))
+            {
+                this.Level1Button.Select();
+            }
         }
 
         #endregion
