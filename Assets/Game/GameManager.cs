@@ -24,7 +24,6 @@ namespace Game
 
         private void Start()
         {
-            Application.targetFrameRate = 60;
             Events.Player.OnDeathBegin += this.HandlePlayerDeath;
             Events.Player.OnStarCollected += this.HandleStarCollected;
         }
@@ -53,6 +52,12 @@ namespace Game
             newEnemy.SetActive(true);
             newEnemy.GetComponent<EnemyController>().Spawn(this.Player.transform.position);
             this.enemies.Add(newEnemy);
+        }
+
+        private void OnDestroy()
+        {
+            Events.Player.OnDeathBegin -= this.HandlePlayerDeath;
+            Events.Player.OnStarCollected -= this.HandleStarCollected;
         }
 
         #endregion

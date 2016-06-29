@@ -19,6 +19,8 @@ namespace Entities
 
         private PlayerData data = new PlayerData();
 
+        public GameObject Player;
+
         #endregion
 
         #region Properties
@@ -37,7 +39,7 @@ namespace Entities
         {
             if (Instance == null)
             {
-                DontDestroyOnLoad(this.transform.gameObject);
+                DontDestroyOnLoad(this.gameObject);
                 Instance = this;
                 this.data = PlayerDataSaveController.Load();
             }

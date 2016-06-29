@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Star
   - Safezone
+  - Checkpoint
+  - Goal
   layers:
   - Default
   - TransparentFX

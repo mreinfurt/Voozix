@@ -22,8 +22,12 @@
             /// </summary>
             public class Base
             {
+                #region Public
+
                 public static string TryAgain = "Press <color=\"#fffc19\">R</color> to try again";
                 public static string Score = "Score";
+
+                #endregion
             }
 
             /// <summary>
@@ -31,7 +35,11 @@
             /// </summary>
             public class Console : Base
             {
+                #region Public
+
                 public new static string TryAgain = "Press <color=\"#fffc19\">X</color> to try again";
+
+                #endregion
             }
 
             /// <summary>
@@ -39,7 +47,11 @@
             /// </summary>
             public class Touch : Base
             {
+                #region Public
+
                 public new static string TryAgain = "<color=\"#fffc19\">Tap</color> to try again";
+
+                #endregion
             }
         }
     }

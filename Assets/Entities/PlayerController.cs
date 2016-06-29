@@ -1,7 +1,6 @@
 ﻿#region Namespaces
 
 using Data;
-using Events;
 using Input;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -14,7 +13,14 @@ namespace Entities
     {
         #region Fields
 
+        private new Collider2D collider2D;
+
+        public bool IsActive = true;
+
         public bool IsAlive = true;
+
+        [SerializeField] private Vector2 lastCheckpoint = Vector2.zero;
+
         private Vector2 movement;
 
         public float Speed = 5.5f;
@@ -27,13 +33,7 @@ namespace Entities
         public int Score
         {
             get { return PlayerDataHolder.Instance.Data.Score; }
-            private set
-            {
-                var difference = value - PlayerDataHolder.Instance.Data.Score;
-                PlayerDataHolder.Instance.Data.Score = value;
-
-                Player.OnScoreChanged(PlayerDataHolder.Instance.Data.Score, difference, this.transform.position);
-            }
+            private set { PlayerDataHolder.Instance.Data.Score = value; }
         }
 
         #endregion
@@ -42,19 +42,44 @@ namespace Entities
 
         private void Start()
         {
-            Global.OnReset += OnReset;
+            Events.Global.OnReset += OnReset;
+            Events.Player.OnFreezeMovement += OnFreezeMovement;
+
             this.touchController = this.GetComponent<TouchJoystickController>();
+            this.collider2D = this.GetComponent<Collider2D>();
+
+            PlayerDataHolder.Instance.Data.Score = 0;
+            PlayerDataHolder.Instance.Player = this.gameObject;
+        }
+
+        private void OnDestroy()
+        {
+            Events.Global.OnReset -= OnReset;
+            Events.Player.OnFreezeMovement -= OnFreezeMovement;
+        }
+
+        private void OnFreezeMovement(bool freeze)
+        {
+            this.IsActive = !freeze;
         }
 
         private void OnReset()
         {
-            this.Score = 0;
             this.IsAlive = true;
+            this.transform.position = new Vector3(this.lastCheckpoint.x, this.lastCheckpoint.y,
+                this.transform.position.z);
+
+            this.transform.localScale = Vector3.one;
+            this.collider2D.enabled = true;
         }
 
         private void Update()
         {
-            if (!this.IsAlive)
+        }
+
+        private void FixedUpdate()
+        {
+            if (!this.IsAlive || !this.IsActive)
             {
                 return;
             }
@@ -81,26 +106,46 @@ namespace Entities
             this.transform.position += position;
         }
 
-        private void OnCollisionEnter2D(Collision2D collider)
+        private void OnCollisionEnter2D(Collision2D otherCollider)
         {
-            switch (collider.gameObject.tag.ToLower())
+            switch (otherCollider.gameObject.tag.ToLower())
             {
                 case "star":
                     this.Score += 20;
-                    Player.OnStarCollected();
+                    Events.Player.OnStarCollected();
                     break;
                 case "enemy":
-                    Player.OnDeathBegin(PlayerDataHolder.Instance.Data, this.transform.position);
+                    Events.Player.OnDeathBegin(PlayerDataHolder.Instance.Data, this.transform.position);
                     this.HandleDeathBegin();
+                    break;
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D otherCollider)
+        {
+            switch (otherCollider.gameObject.tag.ToLower())
+            {
+                case "checkpoint":
+                    this.lastCheckpoint = this.transform.position;
+                    Events.Player.OnReachedCheckpoint(this.transform.position);
+                    break;
+
+                case "goal":
+                    this.lastCheckpoint = this.transform.position;
+                    this.IsActive = false;
+                    Events.Player.OnReachedGoal(this.transform.position);
                     break;
             }
         }
 
         private void HandleDeathBegin()
         {
+            this.transform.localScale = Vector3.zero;
+            this.collider2D.enabled = false;
+            this.IsAlive = false;
+
             PlayerDataSaveController.Save(PlayerDataHolder.Instance.Data);
             this.GetComponent<AudioSource>().Play();
-            this.IsAlive = false;
 
             Invoke("HandleDeathEnd", 0.3f);
         }
@@ -108,7 +153,7 @@ namespace Entities
         [UsedImplicitly]
         private void HandleDeathEnd()
         {
-            Player.OnDeathEnd(PlayerDataHolder.Instance.Data, this.transform.position);
+            Events.Player.OnDeathEnd(PlayerDataHolder.Instance.Data, this.transform.position);
         }
 
         #endregion

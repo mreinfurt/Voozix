@@ -3,6 +3,10 @@ Voozix is a 2D game made using Unity. The basic premise revolves around a player
 
 The main development goal is to have a playground to lean more about shader effects and animations. Instead of implementing various effects on standalone applications, I decided implement them as part of a game.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mreinfurt/Voozix/develop/Information/Preview.png">
+</p>
+
 ## Documentation
 - Please visit the documentation in the wiki: https://github.com/mreinfurt/Voozix/wiki
 - Please visit the development guidelines in the wiki: https://github.com/mreinfurt/Voozix/wiki/Development-Guideline

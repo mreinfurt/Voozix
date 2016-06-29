@@ -18,13 +18,18 @@ namespace Entities
 
         #region Methods
 
-        void Start()
+        private void Start()
         {
             this.audioSource = this.GetComponent<AudioSource>();
         }
 
-        void Update()
+        private void Update()
         {
+            if (this.audioSource == null)
+            {
+                return;
+            }
+
             this.audioSource.volume = PlayerDataHolder.Instance.Data.MusicEnabled ? this.Volume : 0;
         }
 

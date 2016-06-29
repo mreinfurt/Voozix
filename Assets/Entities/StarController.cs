@@ -15,6 +15,8 @@ namespace Entities
 
         public GameObject EnemyPrefab;
 
+        [SerializeField] private bool isRespawning = true;
+
         public GameObject StarCollectionParticleSystem;
 
         #endregion
@@ -24,6 +26,12 @@ namespace Entities
         public float Scale
         {
             get { return this.transform.localScale.x; }
+        }
+
+        public bool Respawn
+        {
+            get { return this.isRespawning; }
+            set { this.isRespawning = value; }
         }
 
         #endregion
@@ -46,6 +54,14 @@ namespace Entities
             if (collisionInformation.gameObject.tag.ToLower() == "player")
             {
                 this.GetComponent<AudioSource>().Play();
+
+                if (!this.Respawn)
+                {
+                    this.transform.localScale = new Vector3(0, 0, 0);
+                    this.transform.position = new Vector3(-100, -100, -100); // TODO: How to make this nicer?
+                    Destroy(this.gameObject, 0.5f);
+                    return;
+                }
 
                 var playerPosition = collisionInformation.gameObject.transform.position;
                 var screenBounds = Screen.GetScreenSpaceBounds();

@@ -1,6 +1,7 @@
 ﻿#region Namespaces
 
 using System;
+using System.Collections.Generic;
 
 #endregion
 
@@ -14,9 +15,11 @@ namespace Data
     {
         #region Fields
 
-        public bool MusicEnabled = true;
+        private List<ChapterData> chapterData = new List<ChapterData>();
 
         public int HighestScore;
+
+        public bool MusicEnabled = true;
 
         private int score;
 
@@ -29,12 +32,22 @@ namespace Data
             get { return this.score; }
             set
             {
+                var difference = value - this.Score;
+
                 this.score = value;
                 if (this.score > this.HighestScore)
                 {
                     this.HighestScore = this.score;
                 }
+
+                Events.Player.OnScoreChanged(this.Score, difference);
             }
+        }
+
+        public List<ChapterData> ChapterData
+        {
+            get { return this.chapterData; }
+            set { this.chapterData = value; }
         }
 
         #endregion
