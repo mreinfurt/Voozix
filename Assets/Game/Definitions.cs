@@ -1,4 +1,6 @@
-﻿namespace Game
+﻿using System.Collections.Generic;
+
+namespace Game
 {
     namespace Definitions
     {
@@ -13,6 +15,15 @@
             public static string JoystickVerticalMovement = "VerticalJoystick";
 
             #endregion
+        }
+
+        public class Level
+        {
+            public static List<List<int>> LevelStarList = new List<List<int>>
+            {
+                new List<int>() { 14, 0, 0, 0 },
+                new List<int>() { 0, 0, 0, 0 },
+            };
         }
 
         namespace LocalizationKeys
