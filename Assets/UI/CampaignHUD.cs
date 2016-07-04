@@ -93,7 +93,10 @@ namespace UI
 
         private void OnDeathEnd(PlayerData playerData, Vector2 vector2)
         {
-            this.DeathHintText.enabled = true;
+            if (GameStateController.GameState != GameState.InGame)
+            {
+                this.DeathHintText.enabled = true;
+            }
         }
 
         private void HandleOnGoalReachedContinueButtonClick()
