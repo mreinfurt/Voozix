@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿#region Namespaces
+
+using System.Collections.Generic;
+
+#endregion
 
 namespace Game
 {
@@ -19,11 +23,15 @@ namespace Game
 
         public class Level
         {
+            #region Public
+
             public static List<List<int>> LevelStarList = new List<List<int>>
             {
-                new List<int>() { 14, 0, 0, 0 },
-                new List<int>() { 0, 0, 0, 0 },
+                new List<int>() {14, 0, 0, 0},
+                new List<int>() {0, 0, 0, 0},
             };
+
+            #endregion
         }
 
         namespace LocalizationKeys

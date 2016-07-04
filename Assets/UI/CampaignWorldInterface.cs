@@ -1,7 +1,6 @@
 ﻿#region Namespaces
 
 using Entities;
-using Game;
 using UnityEngine;
 using UnityEngine.UI;
 

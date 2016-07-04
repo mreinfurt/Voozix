@@ -1,6 +1,5 @@
 ﻿#region Namespaces
 
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,13 +9,20 @@ namespace UI
 {
     public class LevelButtonController : MonoBehaviour, ISelectHandler
     {
+        #region Fields
+
+        [SerializeField] private CampaignSelectionController campaignSelectionController;
+
+        [SerializeField] private int level;
+
+        #endregion
+
         #region Methods
 
-        [SerializeField]
-        private int level;
-
-        [SerializeField]
-        private CampaignSelectionController campaignSelectionController;
+        public void OnSelect(BaseEventData eventData)
+        {
+            this.campaignSelectionController.SelectLevel(this.level);
+        }
 
         private void Start()
         {
@@ -24,11 +30,6 @@ namespace UI
 
         private void Update()
         {
-        }
-
-        public void OnSelect(BaseEventData eventData)
-        {
-            this.campaignSelectionController.SelectLevel(this.level);
         }
 
         #endregion
