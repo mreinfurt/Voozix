@@ -169,6 +169,8 @@ namespace UI
                 this.LevelSummaryTryAgainButton.onClick.AddListener(HandleOnLevelSummaryTryAgainButtonClick);
                 this.LevelSummaryQuitButton.onClick.AddListener(HandleOnLevelSummaryQuitButtonClick);
             }
+
+            this.LevelSummaryContinueButton.Select();
         }
 
         private void CloseLevelSummary()
