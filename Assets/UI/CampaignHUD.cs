@@ -22,11 +22,11 @@ namespace UI
         public Text DeathHintText;
 
         private bool goalReached = false;
-        private bool LevelSummaryOpened = false;
 
         public GameObject LevelSummaryContainer;
 
         public Button LevelSummaryContinueButton;
+        private bool LevelSummaryOpened = false;
         public Button LevelSummaryQuitButton;
         public Text LevelSummaryScoreText;
         public Text LevelSummaryStarText;
@@ -93,7 +93,10 @@ namespace UI
 
         private void OnDeathEnd(PlayerData playerData, Vector2 vector2)
         {
-            this.DeathHintText.enabled = true;
+            if (GameStateController.GameState != GameState.InGame)
+            {
+                this.DeathHintText.enabled = true;
+            }
         }
 
         private void HandleOnGoalReachedContinueButtonClick()
@@ -169,6 +172,8 @@ namespace UI
                 this.LevelSummaryTryAgainButton.onClick.AddListener(HandleOnLevelSummaryTryAgainButtonClick);
                 this.LevelSummaryQuitButton.onClick.AddListener(HandleOnLevelSummaryQuitButtonClick);
             }
+
+            this.LevelSummaryContinueButton.Select();
         }
 
         private void CloseLevelSummary()
@@ -224,7 +229,8 @@ namespace UI
             }
 
             this.currentDeathHintAnimationTime += Time.deltaTime;
-            this.currentDeathHintAnimationTime = Utility.Tween.LinearScaleInOut(this.DeathHintText.gameObject, new Vector2(0.8f, 1f), this.currentDeathHintAnimationTime);
+            this.currentDeathHintAnimationTime = Utility.Tween.LinearScaleInOut(this.DeathHintText.gameObject,
+                new Vector2(0.8f, 1f), this.currentDeathHintAnimationTime);
 
             var time = new TimeSpan(0, 0, 0, 0, (int) (this.CampaignController.CurrentTime * 1000));
             this.TimeText.text = string.Format("{0:00}:{1:00}:{2:00}", (int) time.TotalHours, time.Minutes, time.Seconds);

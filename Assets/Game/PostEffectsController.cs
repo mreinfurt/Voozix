@@ -18,11 +18,11 @@ namespace Game
     {
         #region Fields
 
+        public Material BlurMaterial;
+
         public PostEffect PostEffect = PostEffect.Shockwave;
 
         public Material PostEffectMaterial;
-
-        public Material BlurMaterial;
 
         #endregion
 

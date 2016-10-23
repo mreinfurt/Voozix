@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utility;
-using Input = UnityEngine.Input;
 
 #endregion
 
@@ -19,7 +18,9 @@ namespace UI
 
         public Button BackButton;
 
-        public Button MuteButton;
+        public int Chapter;
+
+        private int currentlySelectedLevel;
 
         public Button Level1Button;
 
@@ -29,22 +30,19 @@ namespace UI
 
         public Button Level4Button;
 
-        public Button PlayButton;
-
         public Text LevelDescriptionText;
+
+        [SerializeField] private List<Image> LevelUnlockImages;
+
+        public Button MuteButton;
+
+        public Button PlayButton;
 
         public Text ScoreText;
 
         public Text StarsText;
 
         public Text TimeText;
-
-        [SerializeField]
-        private List<Image> LevelUnlockImages;
-
-        public int Chapter;
-
-        private int currentlySelectedLevel;
 
         #endregion
 
@@ -72,14 +70,9 @@ namespace UI
             var currentLevel = 0;
             foreach (var level in chapter.LevelData)
             {
-                if (level.Completed)
-                {
-                    this.LevelUnlockImages[currentLevel].color = new Color(r: 0.078f, g: 0.521f, b: 0.8f, a: 0.745f);
-                }
-                else
-                {
-                    this.LevelUnlockImages[currentLevel].color = new Color(r: 0.29f, g: 0.29f, b: 0.29f, a: 0.745f);
-                }
+                this.LevelUnlockImages[currentLevel].color = level.Completed
+                    ? new Color(r: 0.078f, g: 0.521f, b: 0.8f, a: 1)
+                    : new Color(r: 0.29f, g: 0.29f, b: 0.29f, a: 0.745f);
 
                 currentLevel++;
             }
@@ -101,7 +94,7 @@ namespace UI
         public void SelectLevel(int level)
         {
             this.PlayButton.onClick.RemoveAllListeners();
-            this.PlayButton.onClick.AddListener(() => { this.PlayLevel(level);});
+            this.PlayButton.onClick.AddListener(() => { this.PlayLevel(level); });
             this.PlayButton.Select();
 
             this.currentlySelectedLevel = level;
@@ -121,7 +114,7 @@ namespace UI
             {
                 this.ScoreText.text = "0";
                 this.TimeText.text = "-:--";
-                this.StarsText.text = "0/?";
+                this.StarsText.text = "0/" + Game.Definitions.Level.LevelStarList[0][level];
             }
         }
 
@@ -147,7 +140,7 @@ namespace UI
 
         private void Update()
         {
-            if ( UnityEngine.Input.GetButtonDown("Escape"))
+            if (UnityEngine.Input.GetButtonDown("Cancel"))
             {
                 this.Level1Button.Select();
             }

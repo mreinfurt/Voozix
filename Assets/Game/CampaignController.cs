@@ -1,6 +1,5 @@
 ﻿#region Namespaces
 
-using System;
 using System.Collections.Generic;
 using Data;
 using Entities;
@@ -17,8 +16,8 @@ namespace Game
         public int Chapter = 1;
 
         private float currentTime = 0;
-        private int starsCollected = 0;
         public int Level = 1;
+        private int starsCollected = 0;
 
         #endregion
 
