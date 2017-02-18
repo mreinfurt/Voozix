@@ -8,6 +8,4 @@ The main development goal is to have a playground to lean more about shader effe
 </p>
 
 ## Documentation
-- Please visit the documentation in the wiki: https://github.com/mreinfurt/Voozix/wiki
-- Please visit the development guidelines in the wiki: https://github.com/mreinfurt/Voozix/wiki/Development-Guideline
-- A [weekly build](https://onedrive.live.com/redir?resid=24F24D906F80F17D!126281&authkey=!ABtUru-Ys5xbw9U&ithint=folder%2c) is available
+- Kanban Board: https://waffle.io/mreinfurt/Voozix
